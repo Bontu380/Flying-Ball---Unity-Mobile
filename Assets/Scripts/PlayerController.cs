@@ -50,12 +50,10 @@ public class PlayerController : MonoBehaviour
 
         Vector2 touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 playerPosition = transform.position;
-
-      
-
+        lineRenderer.positionCount = 2;
 
         RaycastHit2D hit;
-        hit = Physics2D.Raycast(transform.position, touchPosition - playerPosition,Mathf.Infinity, LayerMask.GetMask("Obstacle"));
+        hit = Physics2D.Raycast(transform.position, touchPosition - playerPosition, Mathf.Infinity, LayerMask.GetMask("Obstacle"));
       
        
         if (hit.collider != null)
@@ -71,16 +69,18 @@ public class PlayerController : MonoBehaviour
 
     public void releaseGrapple()
     {
+        lineRenderer.positionCount = 0;
         isGrappling = false;
+        
     }
 
     public void drawRope()
     {
         if (!isGrappling) return;
 
-
         lineRenderer.SetPosition(0, transform.position);
         lineRenderer.SetPosition(1, grapplePoint);
+    
     }
 
 
