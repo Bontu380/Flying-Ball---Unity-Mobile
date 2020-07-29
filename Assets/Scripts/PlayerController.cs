@@ -8,9 +8,9 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D playerRb;
     private SpringJoint2D joint;
     private LineRenderer lineRenderer;
-    public LayerMask grappable;
     private Vector2 grapplePoint;
     public bool isGrappling = false;
+ 
 
     void Start()
     {
@@ -22,22 +22,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if(Input.touchCount == 1)
-         {
-             if(Input.GetTouch(0).phase == TouchPhase.Began)
-             {
-
-                 grapple();
-
-             }
-         } 
-
-        else if(Input.touchCount == 0)
-        {
-             releaseGrapple();
-
-         }*/
-
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -63,23 +47,22 @@ public class PlayerController : MonoBehaviour
 
     public void grapple()
     {
-        //Vector3 touchPosition = Input.GetTouch(0).position;
 
         Vector2 touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 playerPosition = transform.position;
 
-        Vector2 raycastStartPos = touchPosition - playerPosition;
+      
 
 
         RaycastHit2D hit;
-        hit = Physics2D.Raycast(raycastStartPos, touchPosition - playerPosition, grappable);
+        hit = Physics2D.Raycast(transform.position, touchPosition - playerPosition,Mathf.Infinity, LayerMask.GetMask("Obstacle"));
       
        
         if (hit.collider != null)
         {
             grapplePoint = hit.point;
             Debug.DrawRay(transform.position, touchPosition-playerPosition, Color.green);
-            Debug.Log(hit.transform.tag);
+            Debug.Log(hit.collider.name);
             isGrappling = true;
         }
         
