@@ -18,6 +18,6 @@ public class ParticleManager : MonoBehaviour
     void Update()
     {
         Vector2 playerVelocity = playerRb.velocity;
-        //ps.shape.rotation = new Vector2(playerRb.velocity);
+
     }
 }
