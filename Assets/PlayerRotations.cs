@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class PlayerRotations : MonoBehaviour
 {
-    Rigidbody2D playerRb;
+    private Rigidbody2D playerRb;
+    private SpringJoint2D joint;
+    private float angle;
+    private float smoothFactor = 3f;
     void Start()
     {
         playerRb = GetComponent<Rigidbody2D>();
@@ -13,16 +16,17 @@ public class PlayerRotations : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       // Vector2 sipid = new Vector2(playerRb.velocity.x, 0f);
+        /*
+        Vector2 velocity = playerRb.velocity;
+        angle = Mathf.Atan2(velocity.y,velocity.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        */
 
-        Vector2 speed = playerRb.velocity;
-        float angle = Vector2.Angle(speed, transform.position);
+        Vector2 velocity = playerRb.velocity;
+        angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
+        
+        Quaternion rotated = Quaternion.AngleAxis(angle, Vector3.forward);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rotated,smoothFactor );
 
-
-        //transform.eulerAngles= new Vector3(0f,0f,angle);
-
-        transform.Rotate(Vector3.forward,angle * Time.deltaTime);
-       // transform.Rotate(Vector3.forward,angle);
-       
     }
 }
