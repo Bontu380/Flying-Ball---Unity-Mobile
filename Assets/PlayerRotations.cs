@@ -22,12 +22,12 @@ public class PlayerRotations : MonoBehaviour
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         */
 
-        
+
         Vector2 velocity = playerRb.velocity;
         angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
-        
-        Quaternion rotated = Quaternion.AngleAxis(angle, Vector3.forward);
-        transform.rotation = Quaternion.Lerp(transform.rotation, rotated,smoothFactor * Time.deltaTime );
-        
+        Quaternion newRotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        //transform.rotation = Quaternion.Lerp(transform.rotation, rotated,smoothFactor * Time.deltaTime );
+        transform.rotation = Quaternion.Lerp(transform.rotation, newRotation,smoothFactor );
+
     }
 }
