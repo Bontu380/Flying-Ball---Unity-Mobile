@@ -10,13 +10,15 @@ public class PlayerController : MonoBehaviour
     private LineRenderer lineRenderer;
     private Vector2 grapplePoint;
     public bool isGrappling = false;
- 
+    private SpringJoint2D jointNode;
+    private float velocityMultiplier = 2f;
+
+    [SerializeField] private Vector2 currentSpeed;
 
     void Start()
     {
         playerRb = GetComponent<Rigidbody2D>();
         lineRenderer = GetComponent<LineRenderer>();
-
     }
 
     // Update is called once per frame
@@ -25,18 +27,16 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-
-        
             grapple();
-
         }
 
 
         else if (Input.GetMouseButtonUp(0))
         {
             releaseGrapple();
-
         }
+
+        currentSpeed = playerRb.velocity;
     }
 
 
@@ -59,8 +59,9 @@ public class PlayerController : MonoBehaviour
         if (hit.collider != null)
         {
             grapplePoint = hit.point;
-            Debug.DrawRay(transform.position, touchPosition-playerPosition, Color.green);
-            Debug.Log(hit.collider.name);
+            float distance = Vector3.Distance(grapplePoint,transform.position);
+            createJoint(distance);
+            setUpPhysicsForGrapple();
             isGrappling = true;
         }
         
@@ -70,6 +71,9 @@ public class PlayerController : MonoBehaviour
     public void releaseGrapple()
     {
         lineRenderer.positionCount = 0;
+        Destroy(jointNode);
+        playerRb.gravityScale = 1f;
+        playerRb.angularDrag = 0.5f;
         isGrappling = false;
         
     }
@@ -81,6 +85,33 @@ public class PlayerController : MonoBehaviour
         lineRenderer.SetPosition(0, transform.position);
         lineRenderer.SetPosition(1, grapplePoint);
     
+    }
+
+    public void createJoint(float distance)
+    {
+       jointNode = gameObject.AddComponent<SpringJoint2D>();
+       jointNode.autoConfigureConnectedAnchor = false;
+       jointNode.connectedAnchor = grapplePoint;
+       jointNode.distance = distance ;
+       jointNode.autoConfigureDistance = false;
+        jointNode.frequency = 0f;
+        //jointNode.anchor += new Vector2(0f, 0.5f);
+
+     
+    }
+
+    public void setUpPhysicsForGrapple()
+    {
+        playerRb.angularDrag = 0f;
+        playerRb.gravityScale = 0f;
+        playerRb.velocity *= velocityMultiplier;
+    }
+
+    public void setUpPhysicsForRelease()
+    {
+        playerRb.angularDrag = 0.5f;
+        playerRb.gravityScale = 1f;
+        playerRb.velocity /= velocityMultiplier;
     }
 
 
