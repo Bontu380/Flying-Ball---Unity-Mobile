@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private float velocityMultiplier = 3f;
 
     [SerializeField] private Vector2 currentSpeed;
+    [SerializeField] private float currentSpeedMagnitude;
 
     void Start()
     {
@@ -37,6 +38,7 @@ public class PlayerController : MonoBehaviour
         }
 
         currentSpeed = playerRb.velocity;
+        currentSpeedMagnitude = playerRb.velocity.magnitude;
     }
 
 
