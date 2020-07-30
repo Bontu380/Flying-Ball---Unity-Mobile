@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviour
         if (isGrappling)
         {
             playerRb.velocity = playerRb.velocity.normalized * velocityMultiplier;
+          
         }
     }
     
@@ -77,7 +78,7 @@ public class PlayerController : MonoBehaviour
             grapplePoint = hit.point;
             float distance = Vector3.Distance(grapplePoint,transform.position);
             createJoint(distance);
-            velocityMultiplier = playerRb.velocity.magnitude * 1.2f;
+            velocityMultiplier = playerRb.velocity.magnitude;
             setUpPhysicsForGrapple();
             isGrappling = true;
         }
@@ -117,16 +118,16 @@ public class PlayerController : MonoBehaviour
     {
         playerRb.angularDrag = 0f;
         playerRb.gravityScale = 0f;
-        //playerRb.velocity *= velocityMultiplier;
+    
     }
 
     public void setUpPhysicsForRelease()
     {
         playerRb.gravityScale = 1f;
         playerRb.angularDrag = 0.5f;
-        //playerRb.velocity /= velocityMultiplier;
 
     }
+
 
 
 }
