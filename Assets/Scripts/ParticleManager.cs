@@ -17,6 +17,7 @@ public class ParticleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Vector2 playerVelocity = playerRb.velocity;
+        //ps.shape.rotation = new Vector2(playerRb.velocity);
     }
 }
