@@ -7,7 +7,7 @@ public class PlayerRotations : MonoBehaviour
     private Rigidbody2D playerRb;
     private SpringJoint2D joint;
     private float angle;
-    private float smoothFactor = 1f;
+    private float smoothFactor = 8f;
     void Start()
     {
         playerRb = GetComponent<Rigidbody2D>();
@@ -26,8 +26,7 @@ public class PlayerRotations : MonoBehaviour
         Vector2 velocity = playerRb.velocity;
         angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
         Quaternion newRotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        //transform.rotation = Quaternion.Lerp(transform.rotation, rotated,smoothFactor * Time.deltaTime );
-        transform.rotation = Quaternion.Lerp(transform.rotation, newRotation,smoothFactor );
+        transform.rotation = Quaternion.Lerp(transform.rotation, newRotation,smoothFactor * Time.deltaTime);
 
     }
 }
