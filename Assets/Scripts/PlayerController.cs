@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 grapplePoint;
     public bool isGrappling = false;
     private SpringJoint2D jointNode;
-    private float velocityMultiplier = 2f;
+    private float velocityMultiplier = 3f;
 
     [SerializeField] private Vector2 currentSpeed;
 
@@ -72,8 +72,7 @@ public class PlayerController : MonoBehaviour
     {
         lineRenderer.positionCount = 0;
         Destroy(jointNode);
-        playerRb.gravityScale = 1f;
-        playerRb.angularDrag = 0.5f;
+        setUpPhysicsForRelease();
         isGrappling = false;
         
     }
@@ -92,11 +91,8 @@ public class PlayerController : MonoBehaviour
        jointNode = gameObject.AddComponent<SpringJoint2D>();
        jointNode.autoConfigureConnectedAnchor = false;
        jointNode.connectedAnchor = grapplePoint;
-       jointNode.distance = distance ;
-       jointNode.autoConfigureDistance = false;
-        jointNode.frequency = 0f;
-        //jointNode.anchor += new Vector2(0f, 0.5f);
-
+       jointNode.distance = distance;
+       jointNode.frequency = 0f;
      
     }
 
@@ -109,8 +105,8 @@ public class PlayerController : MonoBehaviour
 
     public void setUpPhysicsForRelease()
     {
-        playerRb.angularDrag = 0.5f;
         playerRb.gravityScale = 1f;
+        playerRb.angularDrag = 0.5f;
         playerRb.velocity /= velocityMultiplier;
     }
 
