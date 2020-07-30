@@ -11,15 +11,17 @@ public class PlayerController : MonoBehaviour
     private Vector2 grapplePoint;
     public bool isGrappling = false;
     private SpringJoint2D jointNode;
-    private float velocityMultiplier = 3f;
-
+    private float velocityMultiplier;
+    private float forceMultiplier;
     [SerializeField] private Vector2 currentSpeed;
     [SerializeField] private float currentSpeedMagnitude;
+    [SerializeField] private float angle;
 
     void Start()
     {
         playerRb = GetComponent<Rigidbody2D>();
         lineRenderer = GetComponent<LineRenderer>();
+
     }
 
     // Update is called once per frame
@@ -39,9 +41,21 @@ public class PlayerController : MonoBehaviour
 
         currentSpeed = playerRb.velocity;
         currentSpeedMagnitude = playerRb.velocity.magnitude;
+
+
+
+        
     }
 
 
+   private void FixedUpdate()
+    {
+        if (isGrappling)
+        {
+            playerRb.velocity = playerRb.velocity.normalized * velocityMultiplier;
+        }
+    }
+    
     void LateUpdate()
     {
         drawRope();     
@@ -63,6 +77,7 @@ public class PlayerController : MonoBehaviour
             grapplePoint = hit.point;
             float distance = Vector3.Distance(grapplePoint,transform.position);
             createJoint(distance);
+            velocityMultiplier = playerRb.velocity.magnitude * 1.2f;
             setUpPhysicsForGrapple();
             isGrappling = true;
         }
@@ -95,21 +110,22 @@ public class PlayerController : MonoBehaviour
        jointNode.connectedAnchor = grapplePoint;
        jointNode.distance = distance;
        jointNode.frequency = 0f;
-     
+         
     }
 
     public void setUpPhysicsForGrapple()
     {
         playerRb.angularDrag = 0f;
         playerRb.gravityScale = 0f;
-        playerRb.velocity *= velocityMultiplier;
+        //playerRb.velocity *= velocityMultiplier;
     }
 
     public void setUpPhysicsForRelease()
     {
         playerRb.gravityScale = 1f;
         playerRb.angularDrag = 0.5f;
-        playerRb.velocity /= velocityMultiplier;
+        //playerRb.velocity /= velocityMultiplier;
+
     }
 
 
