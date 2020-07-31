@@ -18,7 +18,8 @@ public class CameraController : MonoBehaviour
 
         Coroutine waitForZoomOut = StartCoroutine(zoomOut());
         Coroutine waitForZoomIn = StartCoroutine(zoomIn(waitForZoomOut));
-        //StartCoroutine(countdownToStart());
+        StartCoroutine(countdownToStart(waitForZoomIn,countDownTime));
+        //Debug.Log("SA");
         
     }
 
@@ -32,7 +33,7 @@ public class CameraController : MonoBehaviour
 
     public IEnumerator zoomOut()
     {
-        while(cam.orthographicSize <= zoomOutSize - 0.001f)
+        while(cam.orthographicSize <= zoomOutSize - 0.01f)
         {
             cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, zoomOutSize, zoomSmoothTime * Time.deltaTime);
             yield return null;
@@ -45,7 +46,7 @@ public class CameraController : MonoBehaviour
 
         yield return waitForZoomOut;
 
-        while (cam.orthographicSize >= originalSize - 0.001f)
+        while (cam.orthographicSize >= originalSize - 0.01f)
         {
             cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, originalSize, zoomSmoothTime * Time.deltaTime);
             yield return null;
@@ -53,17 +54,20 @@ public class CameraController : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
     }
 
-    /*public IEnumerator countdownToStart()
+    public IEnumerator countdownToStart(Coroutine waitForZoomIn,float seconds)
     {
-        float localTime = 3f;
+        yield return waitForZoomIn;
 
-        while ()
+        while(seconds > 0)
         {
-            yield return null;
-        }
+            //Text.text = count.toString();
+            Debug.Log(seconds);
+            yield return new WaitForSeconds(1.1f);
+             seconds--;
+         }
 
-        GameController.instance.start = true;
+       //GameController.instance.startGame();
         yield return null;
-    }*/
+    }
 
 }
