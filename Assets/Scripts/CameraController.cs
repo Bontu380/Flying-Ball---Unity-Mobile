@@ -9,7 +9,8 @@ public class CameraController : MonoBehaviour
     private float zoomOutSize;
     private float zoomSmoothTime = 3.5f;
     public float countDownTime = 3f;
-   
+    public GameObject player;
+    private Vector3 offset;
 
     void Start()
     {
@@ -19,21 +20,23 @@ public class CameraController : MonoBehaviour
         Coroutine waitForZoomOut = StartCoroutine(zoomOut());
         Coroutine waitForZoomIn = StartCoroutine(zoomIn(waitForZoomOut));
         StartCoroutine(countdownToStart(waitForZoomIn,countDownTime));
-        //Debug.Log("SA");
+
+
+        offset = transform.position - player.transform.position;
         
     }
 
-/*
+
     private void Update()
     {
-        
+        transform.position = player.transform.position + offset;
     }
 
-*/
+
 
     public IEnumerator zoomOut()
     {
-        while(cam.orthographicSize <= zoomOutSize - 0.05f)
+        while(cam.orthographicSize < zoomOutSize - 0.1f)
         {
             cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, zoomOutSize, zoomSmoothTime * Time.deltaTime);
             yield return null;
@@ -46,7 +49,7 @@ public class CameraController : MonoBehaviour
 
         yield return waitForZoomOut;
 
-        while (cam.orthographicSize >= originalSize + 0.05f)
+        while (cam.orthographicSize > originalSize + 0.1f)
         {
             cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, originalSize, zoomSmoothTime * Time.deltaTime);
             yield return null;
@@ -58,7 +61,7 @@ public class CameraController : MonoBehaviour
     {
         yield return waitForZoomIn;
 
-        int differenceBetweenTextFonts = 16;
+        int differenceBetweenTextFonts = 32;
         int originalFontSize = GameController.instance.countDownText.fontSize;
         int targetFontSize = originalFontSize + differenceBetweenTextFonts;
         
@@ -97,7 +100,10 @@ public class CameraController : MonoBehaviour
             
         }
         GameController.instance.countDownText.text = "Go!";
+        yield return new WaitForSeconds(0.5f);
+
         GameController.instance.startGame();
+        GameController.instance.countDownText.enabled = false;
         yield return null;
     }
     

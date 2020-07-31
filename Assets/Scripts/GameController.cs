@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour
     public static GameController instance;
     public bool pause = true;
     public Text countDownText;
+    public GameObject player;
  
 
     void Awake()
@@ -32,6 +33,8 @@ public class GameController : MonoBehaviour
     public void startGame()
     {
         Time.timeScale = 1f;
+        Rigidbody2D playerRb = player.GetComponent<Rigidbody2D>();
+        playerRb.gravityScale = 1f;
         pause = false;
     }
 
@@ -49,6 +52,13 @@ public class GameController : MonoBehaviour
         Debug.Log("Go !");
         GameController.instance.startGame();
         yield return null;
+    }
+
+    public void die()
+    {
+        pause = true;
+        Time.timeScale = 0f;
+        //Death text restart falan goster
     }
 
 }
