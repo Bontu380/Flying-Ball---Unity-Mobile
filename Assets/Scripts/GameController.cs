@@ -5,7 +5,8 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public static GameController instance;
-    public bool pause = true;
+    public bool pause = false;
+    public bool start = false;
 
     void Awake()
     {
@@ -17,6 +18,7 @@ public class GameController : MonoBehaviour
         {
             instance = this;
         }
+
     }
 
     // Update is called once per frame
