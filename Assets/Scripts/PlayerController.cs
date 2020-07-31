@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     private SpringJoint2D jointNode;
     private float velocityMultiplier;
     private float forceMultiplier;
+    private float smoothFactor = 6f;
     [SerializeField] private Vector2 currentSpeed;
     [SerializeField] private float currentSpeedMagnitude;
     [SerializeField] private float angle;
@@ -28,6 +29,17 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
+        if (isGrappling)
+        {
+            playerRb.velocity = playerRb.velocity.normalized * velocityMultiplier;
+
+        }
+
+        Vector2 velocity = playerRb.velocity;
+        angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
+        Quaternion newRotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, smoothFactor * Time.deltaTime);
+
         if (Input.GetMouseButtonDown(0))
         {
             grapple();
@@ -41,21 +53,19 @@ public class PlayerController : MonoBehaviour
 
         currentSpeed = playerRb.velocity;
         currentSpeedMagnitude = playerRb.velocity.magnitude;
-
-
-
         
     }
 
 
-   private void FixedUpdate()
+  /* private void FixedUpdate()
     {
         if (isGrappling)
         {
             playerRb.velocity = playerRb.velocity.normalized * velocityMultiplier;
-          
+           
+
         }
-    }
+    }*/
     
     void LateUpdate()
     {
