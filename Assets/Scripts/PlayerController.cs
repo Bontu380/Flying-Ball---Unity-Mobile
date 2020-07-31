@@ -25,9 +25,11 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+
     void Update()
     {
+
+        if (GameController.instance.pause) return;
 
         if (isGrappling)
         {
@@ -56,16 +58,6 @@ public class PlayerController : MonoBehaviour
         
     }
 
-
-  /* private void FixedUpdate()
-    {
-        if (isGrappling)
-        {
-            playerRb.velocity = playerRb.velocity.normalized * velocityMultiplier;
-           
-
-        }
-    }*/
     
     void LateUpdate()
     {

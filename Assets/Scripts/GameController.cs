@@ -5,8 +5,8 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public static GameController instance;
-    public bool pause = false;
-    public bool start = false;
+    public bool pause = true;
+ 
 
     void Awake()
     {
@@ -26,4 +26,11 @@ public class GameController : MonoBehaviour
     {
         
     }
+
+    public void startGame()
+    {
+        Time.timeScale = 1f;
+        pause = false;
+    }
+
 }

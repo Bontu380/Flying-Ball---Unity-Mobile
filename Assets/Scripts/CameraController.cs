@@ -33,7 +33,7 @@ public class CameraController : MonoBehaviour
 
     public IEnumerator zoomOut()
     {
-        while(cam.orthographicSize <= zoomOutSize - 0.01f)
+        while(cam.orthographicSize <= zoomOutSize - 0.05f)
         {
             cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, zoomOutSize, zoomSmoothTime * Time.deltaTime);
             yield return null;
@@ -46,7 +46,7 @@ public class CameraController : MonoBehaviour
 
         yield return waitForZoomOut;
 
-        while (cam.orthographicSize >= originalSize - 0.01f)
+        while (cam.orthographicSize >= originalSize + 0.05f)
         {
             cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, originalSize, zoomSmoothTime * Time.deltaTime);
             yield return null;
@@ -57,16 +57,16 @@ public class CameraController : MonoBehaviour
     public IEnumerator countdownToStart(Coroutine waitForZoomIn,float seconds)
     {
         yield return waitForZoomIn;
-
+       
         while(seconds > 0)
         {
             //Text.text = count.toString();
             Debug.Log(seconds);
-            yield return new WaitForSeconds(1.1f);
-             seconds--;
+            yield return new WaitForSeconds(1.025f);
+            seconds--;
          }
-
-       //GameController.instance.startGame();
+        Debug.Log("Go !");
+        GameController.instance.startGame();
         yield return null;
     }
 
