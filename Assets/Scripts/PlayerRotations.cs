@@ -7,7 +7,6 @@ public class PlayerRotations : MonoBehaviour
     private Rigidbody2D playerRb;
     private SpringJoint2D joint;
     private float angle;
-    private float smoothFactor = 1f;
     void Start()
     {
         playerRb = GetComponent<Rigidbody2D>();
