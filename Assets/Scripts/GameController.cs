@@ -10,13 +10,13 @@ public class GameController : MonoBehaviour
 
     void Awake()
     {
-        if(instance != null)
-        {
-            Destroy(this);
-        }
-        else
+        if(instance == null)
         {
             instance = this;
+        }
+        else if(instance != this)
+        {
+            Destroy(gameObject);
         }
 
     }
