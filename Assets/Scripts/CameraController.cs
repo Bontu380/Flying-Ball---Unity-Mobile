@@ -67,6 +67,7 @@ public class CameraController : MonoBehaviour
         while(seconds > 0)
         {
             GameController.instance.countDownText.text = seconds.ToString();
+
             while (GameController.instance.countDownText.fontSize < targetFontSize )
             {
                 GameController.instance.countDownText.fontSize = (int) Mathf.Lerp(originalFontSize, targetFontSize,smoothingTime * Time.deltaTime);
