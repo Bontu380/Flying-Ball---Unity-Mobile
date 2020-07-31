@@ -57,17 +57,30 @@ public class CameraController : MonoBehaviour
     public IEnumerator countdownToStart(Coroutine waitForZoomIn,float seconds)
     {
         yield return waitForZoomIn;
-       
+
+        float originalFontSize = GameController.instance.countDownText.fontSize;
+        float targetFontSize = originalFontSize + 16;
+        float smoothingTime = 1f;
+        float passedTime = 0f;
+
+        GameController.instance.countDownText.enabled = true;
+
         while(seconds > 0)
         {
-            //Text.text = count.toString();
-            Debug.Log(seconds);
+            GameController.instance.countDownText.text = seconds.ToString();
+            while (passedTime < smoothingTime)
+            {
+                GameController.instance.countDownText.fontSize = (int) Mathf.Lerp(originalFontSize, targetFontSize,smoothingTime * Time.deltaTime);
+                passedTime += Time.deltaTime;
+                yield return null;
+            }
             yield return new WaitForSeconds(1.025f);
             seconds--;
          }
-        Debug.Log("Go !");
+        GameController.instance.countDownText.text = "Go!";
         GameController.instance.startGame();
         yield return null;
     }
+    
 
 }
