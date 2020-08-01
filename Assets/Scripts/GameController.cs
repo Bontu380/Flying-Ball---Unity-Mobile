@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
     public bool pause = true;
     public Text countDownText;
     public GameObject levelPassedPanel;
+    public GameObject levelFailedPanel;
     public GameObject player;
  
 
@@ -53,7 +54,7 @@ public class GameController : MonoBehaviour
     public void die()
     {
         pauseGame();
-        //Death text restart falan goster
+        levelPassedPanel.SetActive(true);
     }
 
     public void levelPassed()
