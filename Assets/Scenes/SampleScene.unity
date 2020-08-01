@@ -352,6 +352,7 @@ MonoBehaviour:
   pause: 1
   countDownText: {fileID: 1888556045}
   levelPassedPanel: {fileID: 1983773182}
+  levelFailedPanel: {fileID: 1395012075}
   player: {fileID: 1170475728}
 --- !u!4 &58568052
 Transform:
