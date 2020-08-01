@@ -54,7 +54,7 @@ public class GameController : MonoBehaviour
     public void die()
     {
         pauseGame();
-        levelPassedPanel.SetActive(true);
+        levelFailedPanel.SetActive(true);
     }
 
     public void levelPassed()
@@ -71,5 +71,7 @@ public class GameController : MonoBehaviour
         playerRb.gravityScale = 0;
 
     }
+
+
 
 }

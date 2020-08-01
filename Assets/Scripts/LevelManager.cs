@@ -24,4 +24,9 @@ public class LevelManager : MonoBehaviour
     {
         Debug.Log("Next level loaded!");
     }
+
+    public void restartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }
