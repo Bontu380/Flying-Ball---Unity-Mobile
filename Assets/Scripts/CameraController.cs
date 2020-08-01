@@ -11,14 +11,15 @@ public class CameraController : MonoBehaviour
     public float countDownTime = 3f;
     public GameObject player;
     private Vector3 offset;
+    public float differenceBetweenSizes = 6f;
 
     void Start()
     {
         originalSize = cam.orthographicSize;
-        zoomOutSize = originalSize + 6f;
+        zoomOutSize = originalSize + differenceBetweenSizes;
 
-        Coroutine waitForZoomOut = StartCoroutine(zoomOut());
-        Coroutine waitForZoomIn = StartCoroutine(zoomIn(waitForZoomOut));
+        Coroutine waitForZoomOut = StartCoroutine(zoomOut(zoomOutSize));
+        Coroutine waitForZoomIn = StartCoroutine(zoomIn(waitForZoomOut,originalSize));
         StartCoroutine(countdownToStart(waitForZoomIn,countDownTime));
 
 
@@ -34,9 +35,9 @@ public class CameraController : MonoBehaviour
 
 
 
-    public IEnumerator zoomOut()
+    public IEnumerator zoomOut(float targetZoomOutSize)
     {
-        while(cam.orthographicSize < zoomOutSize - 0.1f)
+        while(cam.orthographicSize < targetZoomOutSize - 0.1f)
         {
             cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, zoomOutSize, zoomSmoothTime * Time.deltaTime);
             yield return null;
@@ -44,12 +45,12 @@ public class CameraController : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
     }
 
-    public IEnumerator zoomIn(Coroutine waitForZoomOut)
+    public IEnumerator zoomIn(Coroutine waitForZoomOut,float targetZoomInSize)
     {
 
         yield return waitForZoomOut;
 
-        while (cam.orthographicSize > originalSize + 0.1f)
+        while (cam.orthographicSize > targetZoomInSize + 0.1f)
         {
             cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, originalSize, zoomSmoothTime * Time.deltaTime);
             yield return null;

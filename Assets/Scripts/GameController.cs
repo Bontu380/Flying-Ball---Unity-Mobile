@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour
     public static GameController instance;
     public bool pause = true;
     public Text countDownText;
+    public GameObject levelPassedPanel;
     public GameObject player;
  
 
@@ -24,11 +25,6 @@ public class GameController : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void startGame()
     {
@@ -56,9 +52,23 @@ public class GameController : MonoBehaviour
 
     public void die()
     {
-        pause = true;
-        Time.timeScale = 0f;
+        pauseGame();
         //Death text restart falan goster
+    }
+
+    public void levelPassed()
+    {
+        pauseGame();
+        levelPassedPanel.SetActive(true);
+    }
+
+    public void  pauseGame()
+    {
+        pause = true;
+        Rigidbody2D playerRb = player.GetComponent<Rigidbody2D>();
+        playerRb.velocity = Vector2.zero;
+        playerRb.gravityScale = 0;
+
     }
 
 }
