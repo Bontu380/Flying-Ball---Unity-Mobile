@@ -34,7 +34,7 @@ public class GameController : MonoBehaviour
         playerRb.gravityScale = 1f;
         pause = false;
     }
-
+    /*
     public IEnumerator countdownToStart(float seconds)
     {
 
@@ -50,7 +50,7 @@ public class GameController : MonoBehaviour
         GameController.instance.startGame();
         yield return null;
     }
-
+    */
     public void die()
     {
         pauseGame();
@@ -59,6 +59,7 @@ public class GameController : MonoBehaviour
 
     public void levelPassed()
     {
+        Debug.Log("Level passed!");
         PlayerController playerControllerScript = player.GetComponent<PlayerController>();
         playerControllerScript.enabled = false;
         levelPassedPanel.SetActive(true);
