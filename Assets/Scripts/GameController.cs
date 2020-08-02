@@ -59,7 +59,8 @@ public class GameController : MonoBehaviour
 
     public void levelPassed()
     {
-        pauseGame();
+        PlayerController playerControllerScript = player.GetComponent<PlayerController>();
+        playerControllerScript.enabled = false;
         levelPassedPanel.SetActive(true);
     }
 
