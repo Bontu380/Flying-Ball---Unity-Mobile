@@ -31,11 +31,12 @@ public class PlayerController : MonoBehaviour
 
         if (GameController.instance.pause) return;
 
-        if (isGrappling)
+       /* if (isGrappling)
         {
             playerRb.velocity = playerRb.velocity.normalized * velocityMultiplier;
 
         }
+        */
 
         Vector2 velocity = playerRb.velocity;
         angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
@@ -58,7 +59,16 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    
+    private void FixedUpdate()
+    {
+        if (isGrappling)
+        {
+            playerRb.velocity = playerRb.velocity.normalized * velocityMultiplier;
+
+        }
+    }
+
+
     void LateUpdate()
     {
         drawRope();     
@@ -80,8 +90,9 @@ public class PlayerController : MonoBehaviour
             grapplePoint = hit.point;
             float distance = Vector3.Distance(grapplePoint,transform.position);
             createJoint(distance);
-            velocityMultiplier = playerRb.velocity.magnitude;
+            velocityMultiplier = distance * 2.5f;
             setUpPhysicsForGrapple();
+            playerRb.velocity = playerRb.velocity.normalized * velocityMultiplier;
             isGrappling = true;
         }
         
