@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 grapplePoint;
     public bool isGrappling = false;
     private SpringJoint2D jointNode;
-    private float velocityMultiplier;
+    private float velocityMultiplier = 15f;
     private float forceMultiplier;
     private float smoothFactor = 6f;
     [SerializeField] private Vector2 currentSpeed;
@@ -83,16 +83,17 @@ public class PlayerController : MonoBehaviour
 
         RaycastHit2D hit;
         hit = Physics2D.Raycast(transform.position, touchPosition - playerPosition, Mathf.Infinity, LayerMask.GetMask("Obstacle"));
-      
+
+        playerRb.gravityScale = 1;
        
         if (hit.collider != null)
         {
             grapplePoint = hit.point;
             float distance = Vector3.Distance(grapplePoint,transform.position);
             createJoint(distance);
-            velocityMultiplier = (distance / 3) + (playerRb.velocity.magnitude / 2);
-            setUpPhysicsForGrapple();
-            playerRb.velocity = playerRb.velocity.normalized * velocityMultiplier;
+            playerRb.gravityScale = 1;
+           // setUpPhysicsForGrapple();
+           // playerRb.velocity = playerRb.velocity.normalized * velocityMultiplier;
             isGrappling = true;
         }
         

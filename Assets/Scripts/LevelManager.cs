@@ -22,11 +22,13 @@ public class LevelManager : MonoBehaviour
 
     public void loadNextLevel()
     {
+        
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
 
     public void restartLevel()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
