@@ -653,6 +653,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5247000897687406941}
   m_PrefabAsset: {fileID: 0}
+--- !u!50 &628290737 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 8259381561612705560, guid: ec126a6a93418354798e38c364d2c04e,
+    type: 3}
+  m_PrefabInstance: {fileID: 4363667814838921446}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &698038545
 GameObject:
   m_ObjectHideFlags: 0
@@ -6101,6 +6107,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9249b7d4a83a16a4186a3c300893738f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1220200584 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2828598078625368031, guid: ec126a6a93418354798e38c364d2c04e,
+    type: 3}
+  m_PrefabInstance: {fileID: 4363667814838921446}
+  m_PrefabAsset: {fileID: 0}
+--- !u!233 &1220200588
+HingeJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220200584}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 4363667814838921447}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 1
+  m_Anchor: {x: 0, y: -0.51}
+  m_ConnectedAnchor: {x: 0.08866838, y: 0.37465453}
+  m_UseMotor: 0
+  m_Motor:
+    m_MotorSpeed: 0
+    m_MaximumMotorForce: 10000
+  m_UseLimits: 0
+  m_AngleLimits:
+    m_LowerAngle: 0
+    m_UpperAngle: 359
+--- !u!233 &1220200589
+HingeJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220200584}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 628290737}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 1
+  m_Anchor: {x: 0, y: 0.48}
+  m_ConnectedAnchor: {x: 0.45000002, y: -0.4195817}
+  m_UseMotor: 0
+  m_Motor:
+    m_MotorSpeed: 0
+    m_MaximumMotorForce: 10000
+  m_UseLimits: 0
+  m_AngleLimits:
+    m_LowerAngle: 0
+    m_UpperAngle: 359
 --- !u!4 &1255682028 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 144239348044510667, guid: 7d1fd37b6896d7b41b1bc76bf5f182da,
@@ -6937,15 +6997,154 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_AutoConfigureConnectedAnchor
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_UseMotor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Motor.m_MotorSpeed
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_AutoConfigureConnectedAnchor
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Motor.m_MotorSpeed
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_UseMotor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_AutoConfigureConnectedAnchor
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Motor.m_MotorSpeed
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_UseMotor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_AutoConfigureConnectedAnchor
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_UseMotor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Motor.m_MotorSpeed
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_AutoConfigureConnectedAnchor
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_UseMotor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Motor.m_MotorSpeed
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_AutoConfigureConnectedAnchor
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_UseMotor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Motor.m_MotorSpeed
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.7249999
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_ConnectedAnchor.y
+      value: -0.71000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_AutoConfigureConnectedAnchor
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_UseMotor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Motor.m_MotorSpeed
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_AutoConfigureConnectedAnchor
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Motor.m_MotorSpeed
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_UseMotor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144527742214737306, guid: ec126a6a93418354798e38c364d2c04e,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1502764697343705844, guid: ec126a6a93418354798e38c364d2c04e,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2447553895431141078, guid: ec126a6a93418354798e38c364d2c04e,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2990200766926771308, guid: ec126a6a93418354798e38c364d2c04e,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4208064886351560661, guid: ec126a6a93418354798e38c364d2c04e,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5875508565434708955, guid: ec126a6a93418354798e38c364d2c04e,
         type: 3}
       propertyPath: m_Name
       value: Finish2
       objectReference: {fileID: 0}
+    - target: {fileID: 8259381561612705560, guid: ec126a6a93418354798e38c364d2c04e,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8259381561612705560, guid: ec126a6a93418354798e38c364d2c04e,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8280819672157673354, guid: ec126a6a93418354798e38c364d2c04e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.89
       objectReference: {fileID: 0}
     - target: {fileID: 8280819672157673354, guid: ec126a6a93418354798e38c364d2c04e,
         type: 3}
@@ -6997,15 +7196,35 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8805251180268849151, guid: ec126a6a93418354798e38c364d2c04e,
+    - target: {fileID: 8588006169481825091, guid: ec126a6a93418354798e38c364d2c04e,
         type: 3}
-      propertyPath: m_ConnectedAnchor.x
-      value: 0.7249999
+      propertyPath: m_GravityScale
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8805251180268849151, guid: ec126a6a93418354798e38c364d2c04e,
+    - target: {fileID: 8663941737810156158, guid: ec126a6a93418354798e38c364d2c04e,
         type: 3}
-      propertyPath: m_ConnectedAnchor.y
-      value: -0.71000004
+      propertyPath: m_GravityScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8730720750072977835, guid: ec126a6a93418354798e38c364d2c04e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.6188
+      objectReference: {fileID: 0}
+    - target: {fileID: 8730720750072977835, guid: ec126a6a93418354798e38c364d2c04e,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.0022577
+      objectReference: {fileID: 0}
+    - target: {fileID: 8965386895894479417, guid: ec126a6a93418354798e38c364d2c04e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.6128
+      objectReference: {fileID: 0}
+    - target: {fileID: 8965386895894479417, guid: ec126a6a93418354798e38c364d2c04e,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.0144281
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec126a6a93418354798e38c364d2c04e, type: 3}
@@ -7075,13 +7294,13 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 4363667814838921446}
   m_PrefabAsset: {fileID: 0}
---- !u!50 &4363667814838921458 stripped
+--- !u!50 &4363667814838921476 stripped
 Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 2447553895431141078, guid: ec126a6a93418354798e38c364d2c04e,
+  m_CorrespondingSourceObject: {fileID: 8663941737810156158, guid: ec126a6a93418354798e38c364d2c04e,
     type: 3}
   m_PrefabInstance: {fileID: 4363667814838921446}
   m_PrefabAsset: {fileID: 0}
---- !u!233 &4363667814838921459
+--- !u!233 &4363667814838921478
 HingeJoint2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7091,12 +7310,12 @@ HingeJoint2D:
   m_Enabled: 1
   serializedVersion: 4
   m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 4363667814838921458}
+  m_ConnectedRigidBody: {fileID: 4363667814838921449}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -0.7249999, y: -0.75}
+  m_Anchor: {x: 0, y: -0.45}
+  m_ConnectedAnchor: {x: 0.054985043, y: 0.3117121}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -7105,7 +7324,7 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: 0
     m_UpperAngle: 359
---- !u!233 &4363667814838921460
+--- !u!233 &4363667814838921479
 HingeJoint2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7115,12 +7334,12 @@ HingeJoint2D:
   m_Enabled: 1
   serializedVersion: 4
   m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 4363667814838921447}
+  m_ConnectedRigidBody: {fileID: 4363667814838921451}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -0.31819826, y: -0.735391}
+  m_Anchor: {x: 0, y: -0.43}
+  m_ConnectedAnchor: {x: 0.045685403, y: -0.45028752}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -7129,7 +7348,7 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: 0
     m_UpperAngle: 359
---- !u!233 &4363667814838921461
+--- !u!233 &4363667814838921480
 HingeJoint2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7139,12 +7358,12 @@ HingeJoint2D:
   m_Enabled: 1
   serializedVersion: 4
   m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 4363667814838921449}
+  m_ConnectedRigidBody: {fileID: 4363667814838921453}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -0.43434423, y: -0.8458222}
+  m_Anchor: {x: 0, y: 0.51}
+  m_ConnectedAnchor: {x: 0.004214234, y: -0.42953113}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -7153,7 +7372,7 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: 0
     m_UpperAngle: 359
---- !u!233 &4363667814838921462
+--- !u!233 &4363667814838921481
 HingeJoint2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7163,12 +7382,12 @@ HingeJoint2D:
   m_Enabled: 1
   serializedVersion: 4
   m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 4363667814838921451}
+  m_ConnectedRigidBody: {fileID: 4363667814838921455}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.44999984, y: 0.89999974}
+  m_Anchor: {x: -0.01, y: 0.48}
+  m_ConnectedAnchor: {x: -0.101623155, y: -0.37055948}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -7177,7 +7396,7 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: 0
     m_UpperAngle: 359
---- !u!233 &4363667814838921463
+--- !u!233 &4363667814838921482
 HingeJoint2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7187,12 +7406,12 @@ HingeJoint2D:
   m_Enabled: 1
   serializedVersion: 4
   m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 4363667814838921453}
+  m_ConnectedRigidBody: {fileID: 4363667814838921476}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.40234149, y: 0.81430906}
+  m_Anchor: {x: 0, y: 0.48}
+  m_ConnectedAnchor: {x: -0.12352824, y: -0.3709513}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -7201,7 +7420,7 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: 0
     m_UpperAngle: 359
---- !u!233 &4363667814838921464
+--- !u!233 &4363667814838921483
 HingeJoint2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7211,12 +7430,12 @@ HingeJoint2D:
   m_Enabled: 1
   serializedVersion: 4
   m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 4363667814838921455}
+  m_ConnectedRigidBody: {fileID: 628290737}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.74246204, y: 0.7071068}
+  m_Anchor: {x: 0, y: 0.48}
+  m_ConnectedAnchor: {x: -0.45, y: -0.4590543}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
