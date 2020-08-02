@@ -27,6 +27,7 @@ public class LevelManager : MonoBehaviour
 
     public void restartLevel()
     {
+        Debug.Log("Retry clicked");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
