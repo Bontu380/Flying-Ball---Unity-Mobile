@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
             grapplePoint = hit.point;
             float distance = Vector3.Distance(grapplePoint,transform.position);
             createJoint(distance);
-            velocityMultiplier = distance * 2.5f;
+            velocityMultiplier = (distance / 3) + (playerRb.velocity.magnitude / 2);
             setUpPhysicsForGrapple();
             playerRb.velocity = playerRb.velocity.normalized * velocityMultiplier;
             isGrappling = true;

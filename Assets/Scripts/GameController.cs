@@ -59,7 +59,6 @@ public class GameController : MonoBehaviour
 
     public void levelPassed()
     {
-        Debug.Log("Level passed!");
         PlayerController playerControllerScript = player.GetComponent<PlayerController>();
         playerControllerScript.enabled = false;
         levelPassedPanel.SetActive(true);
@@ -68,9 +67,7 @@ public class GameController : MonoBehaviour
     public void  pauseGame()
     {
         pause = true;
-        Rigidbody2D playerRb = player.GetComponent<Rigidbody2D>();
-        playerRb.velocity = Vector2.zero;
-        playerRb.gravityScale = 0;
+        Time.timeScale = 0f;
 
     }
 
