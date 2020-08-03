@@ -95,7 +95,8 @@ public class PlayerController : MonoBehaviour
        
         if (hit.collider != null)
         {
-            grapplePoint = hit.point;
+            //grapplePoint = hit.point;
+            grapplePoint = hit.transform.position;
             float distance = Vector3.Distance(grapplePoint,transform.position);
             createJoint(distance);
             playerRb.gravityScale = 1;
@@ -140,6 +141,10 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.transform.CompareTag("Obstacle") || collision.transform.CompareTag("Wall"))
         {
+            if (isGrappling)
+            {
+                releaseGrapple();
+            }
             GameController.instance.die();
         }
     }

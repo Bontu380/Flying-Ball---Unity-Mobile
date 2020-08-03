@@ -356,6 +356,7 @@ MonoBehaviour:
   player: {fileID: 1170475728}
   mainCam: {fileID: 519420031}
   camController: {fileID: 519420030}
+  playerController: {fileID: 1170475734}
   differenceBetweenSizes: 6
   countDownTime: 3
   originalCamSize: 0
@@ -1604,7 +1605,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &1170475734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7253,12 +7254,12 @@ PrefabInstance:
     - target: {fileID: 4114535975640330052, guid: ec126a6a93418354798e38c364d2c04e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.8
+      value: -18.7
       objectReference: {fileID: 0}
     - target: {fileID: 4114535975640330052, guid: ec126a6a93418354798e38c364d2c04e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.5
+      value: -8.2
       objectReference: {fileID: 0}
     - target: {fileID: 4114535975640330052, guid: ec126a6a93418354798e38c364d2c04e,
         type: 3}

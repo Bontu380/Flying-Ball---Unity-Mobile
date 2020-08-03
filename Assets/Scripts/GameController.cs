@@ -13,6 +13,7 @@ public class GameController : MonoBehaviour
     public GameObject player;
     public Camera mainCam;
     public CameraController camController;
+    public PlayerController playerController;
     public float differenceBetweenSizes = 6f;
     public float countDownTime = 3f;
     public float originalCamSize;
@@ -55,6 +56,7 @@ public class GameController : MonoBehaviour
 
     public void die()
     {
+        playerController.releaseGrapple();
         pauseGame();
         levelFailedPanel.SetActive(true);
     }
