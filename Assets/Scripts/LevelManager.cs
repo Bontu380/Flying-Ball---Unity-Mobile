@@ -28,7 +28,8 @@ public class LevelManager : MonoBehaviour
 
     public void restartLevel()
     {
-        Time.timeScale = 1f;
+       
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        GameController.instance.startGame();
     }
 }

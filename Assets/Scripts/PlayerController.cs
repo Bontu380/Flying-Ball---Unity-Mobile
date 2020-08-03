@@ -11,9 +11,10 @@ public class PlayerController : MonoBehaviour
     private Vector2 grapplePoint;
     public bool isGrappling = false;
     private SpringJoint2D jointNode;
-    private float velocityMultiplier = 15f;
+    private float velocityMultiplier = 10f;
     private float forceMultiplier;
     private float smoothFactor = 6f;
+    Touch touch;
     [SerializeField] private Vector2 currentSpeed;
     [SerializeField] private float currentSpeedMagnitude;
     [SerializeField] private float angle;
@@ -43,16 +44,47 @@ public class PlayerController : MonoBehaviour
         Quaternion newRotation = Quaternion.AngleAxis(angle, Vector3.forward);
         transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, smoothFactor * Time.deltaTime);
 
+
+        /*
         if (Input.GetMouseButtonDown(0))
         {
             grapple();
         }
-
+        
 
         else if (Input.GetMouseButtonUp(0))
         {
             releaseGrapple();
         }
+        */
+
+      
+
+        if (Input.touchCount > 0)
+        {
+            touch = Input.GetTouch(0);
+            if (touch.phase == TouchPhase.Began)
+            {
+                grapple();
+            }
+        }
+
+
+        else if (Input.touchCount == 0)
+        {
+            if (touch.phase == TouchPhase.Ended)
+            {
+                releaseGrapple();
+            }
+        }
+
+       /* float playerDistanceToOrigin = Vector3.Distance(transform.position, Vector3.zero);
+        if (playerDistanceToOrigin > 100f)
+        {
+            GameController.instance.die(); 
+        }*/
+
+
 
         currentSpeed = playerRb.velocity;
         currentSpeedMagnitude = playerRb.velocity.magnitude;
@@ -77,12 +109,17 @@ public class PlayerController : MonoBehaviour
     public void grapple()
     {
 
-        Vector2 touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        // Vector2 touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+       
+        Vector2 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
+
+
         Vector2 playerPosition = transform.position;
         lineRenderer.positionCount = 2;
 
         RaycastHit2D hit;
-        hit = Physics2D.Raycast(transform.position, touchPosition - playerPosition, Mathf.Infinity, LayerMask.GetMask("Obstacle"));
+        hit = Physics2D.Raycast(transform.position, touchPosition - playerPosition, 30f, LayerMask.GetMask("Obstacle"));
 
         playerRb.gravityScale = 1;
        
@@ -146,7 +183,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.CompareTag("Obstacle"))
+        if (collision.transform.CompareTag("Obstacle") || collision.transform.CompareTag("Wall"))
         {
             GameController.instance.die();
         }

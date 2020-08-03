@@ -30,19 +30,13 @@ public class GameController : MonoBehaviour
     public void startGame()
     {
         Time.timeScale = 1f;
-        //Rigidbody2D playerRb = player.GetComponent<Rigidbody2D>();
-        //playerRb.gravityScale = 1f;
         pause = false;
     }
 
-    public void Update()
-    {
-        float playerDistanceToOrigin = Vector3.Distance(player.transform.position, Vector3.zero);
-        if(playerDistanceToOrigin > 200f)
-        {
-            die();
-        }
-    }
+    /*public void Update()
+    {     }*/
+
+
     /*
     public IEnumerator countdownToStart(float seconds)
     {
