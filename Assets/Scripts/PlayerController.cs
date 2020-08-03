@@ -141,10 +141,6 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.transform.CompareTag("Obstacle") || collision.transform.CompareTag("Wall"))
         {
-            if (isGrappling)
-            {
-                releaseGrapple();
-            }
             GameController.instance.die();
         }
     }
