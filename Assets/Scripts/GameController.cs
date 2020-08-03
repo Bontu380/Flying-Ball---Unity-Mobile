@@ -11,49 +11,48 @@ public class GameController : MonoBehaviour
     public GameObject levelPassedPanel;
     public GameObject levelFailedPanel;
     public GameObject player;
- 
+    public Camera mainCam;
+    public CameraController camController;
+    public float differenceBetweenSizes = 6f;
+    public float countDownTime = 3f;
+    public float originalCamSize;
+    public float zoomOutSize;
 
     void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }
-        else if(instance != this)
+        else if (instance != this)
         {
             Destroy(gameObject);
         }
+        originalCamSize = mainCam.orthographicSize;
 
     }
+
+    private void Start()
+    {
+        startGame();
+    }
+
 
 
     public void startGame()
     {
+
+        prepareToStart();
+
+        originalCamSize = mainCam.orthographicSize;
+        zoomOutSize = originalCamSize + differenceBetweenSizes;
+
         Time.timeScale = 1f;
-        pause = false;
+        camController.startZoomOutInSequence();
+       
+ 
     }
 
-    /*public void Update()
-    {     }*/
-
-
-    /*
-    public IEnumerator countdownToStart(float seconds)
-    {
-
-
-        while (seconds > 0)
-        {
-            //Text.text = count.toString();
-            Debug.Log(seconds);
-            yield return new WaitForSeconds(1.025f);
-            seconds--;
-        }
-        Debug.Log("Go !");
-        GameController.instance.startGame();
-        yield return null;
-    }
-    */
     public void die()
     {
         pauseGame();
@@ -62,17 +61,40 @@ public class GameController : MonoBehaviour
 
     public void levelPassed()
     {
-        //PlayerController playerControllerScript = player.GetComponent<PlayerController>();
-        //playerControllerScript.enabled = false;
         pause = true;
         levelPassedPanel.SetActive(true);
     }
 
-    public void  pauseGame()
+    public void pauseGame()
     {
         pause = true;
         Time.timeScale = 0f;
+    }
+    public void resumeGame()
+    {
+        pause = false;
+        Time.timeScale = 1f;
+    }
 
+    public void prepareToStart()
+    {
+        pause = true;
+        //Time.timeScale = 0f;
+
+        levelFailedPanel.SetActive(false);
+        levelPassedPanel.SetActive(false);
+
+        Rigidbody2D playerRb = player.GetComponent<Rigidbody2D>();
+
+        playerRb.velocity = Vector2.zero;
+        playerRb.gravityScale = 0f;
+
+        player.transform.position = Vector3.zero;
+        player.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+
+
+        // mainCam.orthographicSize = originalCamSize;
+        mainCam.transform.position = new Vector3(0f, 0f, -10f);
     }
 
 

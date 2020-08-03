@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance;
+    public List<GameObject> additiveObjects;
 
     private void Awake()
     {
@@ -19,11 +20,23 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+ 
 
     public void loadNextLevel()
     {
-        
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+       
+      SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+      GameController.instance.startGame();
+
+     /*
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1, LoadSceneMode.Additive);
+
+        for (int i = 0; i < additiveObjects.Count; i++)
+        {
+            SceneManager.MoveGameObjectToScene(additiveObjects[i].gameObject,SceneManager.GetSceneByName("Level2"));
+        }
+    */
+
     }
 
     public void restartLevel()

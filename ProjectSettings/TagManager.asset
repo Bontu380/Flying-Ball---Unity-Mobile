@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Obstacle
   - Wall
+  - EventSystem
+  - Canvas
+  - Manager
   layers:
   - Default
   - TransparentFX

@@ -15,16 +15,9 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
-        originalSize = cam.orthographicSize;
-        zoomOutSize = originalSize + differenceBetweenSizes;
-
-        Coroutine waitForZoomOut = StartCoroutine(zoomOut(zoomOutSize));
-        Coroutine waitForZoomIn = StartCoroutine(zoomIn(waitForZoomOut,originalSize));
-        StartCoroutine(countdownToStart(waitForZoomIn,countDownTime));
-
-
+     
         offset = transform.position - player.transform.position;
-        
+
     }
 
 
@@ -37,7 +30,7 @@ public class CameraController : MonoBehaviour
 
     public IEnumerator zoomOut(float targetZoomOutSize)
     {
-        while(cam.orthographicSize < targetZoomOutSize - 0.1f)
+        while (cam.orthographicSize < targetZoomOutSize - 0.1f)
         {
             cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, zoomOutSize, zoomSmoothTime * Time.deltaTime);
             yield return null;
@@ -45,7 +38,7 @@ public class CameraController : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
     }
 
-    public IEnumerator zoomIn(Coroutine waitForZoomOut,float targetZoomInSize)
+    public IEnumerator zoomIn(Coroutine waitForZoomOut, float targetZoomInSize)
     {
 
         yield return waitForZoomOut;
@@ -58,23 +51,23 @@ public class CameraController : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
     }
 
-    public IEnumerator countdownToStart(Coroutine waitForZoomIn,float seconds)
+    public IEnumerator countdownToStart(Coroutine waitForZoomIn, float seconds)
     {
         yield return waitForZoomIn;
 
         int differenceBetweenTextFonts = 32;
         int originalFontSize = GameController.instance.countDownText.fontSize;
         int targetFontSize = originalFontSize + differenceBetweenTextFonts;
-        
+
         float smoothingTime = 0f;
         float duration = 0.6f;
-       
-    
+
+
         GameController.instance.countDownText.enabled = true;
 
-        while(seconds > 0)
+        while (seconds > 0)
         {
-            
+
             GameController.instance.countDownText.text = seconds.ToString();
 
 
@@ -94,25 +87,29 @@ public class CameraController : MonoBehaviour
                 yield return null;
             }
 
-            
+
             yield return new WaitForSeconds(0.4f); //1 saniyeye tamamlamak için
             seconds--;
             smoothingTime = 0f;
-            
+
         }
         GameController.instance.countDownText.text = "Go!";
         yield return new WaitForSeconds(0.5f);
-
-        GameController.instance.startGame();
+ 
         GameController.instance.countDownText.enabled = false;
+        GameController.instance.resumeGame();
         yield return null;
     }
-    
+
+    public void startZoomOutInSequence()
+    {
+        originalSize = cam.orthographicSize;
+        zoomOutSize = originalSize + differenceBetweenSizes;
+
+        Coroutine waitForZoomOut = StartCoroutine(zoomOut(zoomOutSize));
+        Coroutine waitForZoomIn = StartCoroutine(zoomIn(waitForZoomOut, originalSize));
+        StartCoroutine(countdownToStart(waitForZoomIn, countDownTime));
+
+    }
 
 }
-
-
-
-/*                                                                1
- 
-      */

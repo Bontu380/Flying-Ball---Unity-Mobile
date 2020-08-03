@@ -32,12 +32,6 @@ public class PlayerController : MonoBehaviour
 
         if (GameController.instance.pause) return;
 
-       /* if (isGrappling)
-        {
-            playerRb.velocity = playerRb.velocity.normalized * velocityMultiplier;
-
-        }
-        */
 
         Vector2 velocity = playerRb.velocity;
         angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
@@ -45,18 +39,7 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, smoothFactor * Time.deltaTime);
 
 
-        /*
-        if (Input.GetMouseButtonDown(0))
-        {
-            grapple();
-        }
-        
-
-        else if (Input.GetMouseButtonUp(0))
-        {
-            releaseGrapple();
-        }
-        */
+    
 
       
 
@@ -78,16 +61,6 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-       /* float playerDistanceToOrigin = Vector3.Distance(transform.position, Vector3.zero);
-        if (playerDistanceToOrigin > 100f)
-        {
-            GameController.instance.die(); 
-        }*/
-
-
-
-        currentSpeed = playerRb.velocity;
-        currentSpeedMagnitude = playerRb.velocity.magnitude;
         
     }
 
@@ -109,9 +82,6 @@ public class PlayerController : MonoBehaviour
     public void grapple()
     {
 
-        // Vector2 touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-       
         Vector2 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
 
 
@@ -129,8 +99,7 @@ public class PlayerController : MonoBehaviour
             float distance = Vector3.Distance(grapplePoint,transform.position);
             createJoint(distance);
             playerRb.gravityScale = 1;
-           // setUpPhysicsForGrapple();
-           // playerRb.velocity = playerRb.velocity.normalized * velocityMultiplier;
+     
             isGrappling = true;
         }
         
@@ -141,7 +110,6 @@ public class PlayerController : MonoBehaviour
     {
         lineRenderer.positionCount = 0;
         Destroy(jointNode);
-        setUpPhysicsForRelease();
         isGrappling = false;
         
     }
@@ -165,19 +133,6 @@ public class PlayerController : MonoBehaviour
          
     }
 
-    public void setUpPhysicsForGrapple()
-    {
-        playerRb.angularDrag = 0f;
-        playerRb.gravityScale = 0f;
-    
-    }
-
-    public void setUpPhysicsForRelease()
-    {
-        playerRb.gravityScale = 1f;
-        playerRb.angularDrag = 0.5f;
-
-    }
 
 
 
