@@ -22,15 +22,14 @@ public class LevelManager : MonoBehaviour
 
  
 
-    public void loadNextLevel()
+   public void loadNextLevelCall()
     {
 
         int buildIndex = SceneManager.GetActiveScene().buildIndex;
 
         if (buildIndex < SceneManager.sceneCountInBuildSettings -1)
         {
-            SceneManager.LoadScene(buildIndex + 1);
-            GameController.instance.startGame();
+            StartCoroutine(loadLevel(buildIndex + 1));
         }
         else
         {
@@ -40,10 +39,23 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public void restartLevel()
-    {
-       
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    public IEnumerator loadLevel(int buildIndexToLoad){
+
+        AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync(buildIndexToLoad);
+        while (!asyncLoadLevel.isDone)
+        {
+            Debug.Log("Loading");
+            yield return null;
+        }
         GameController.instance.startGame();
+
+    }
+
+
+    public void restartLevelCall()
+    {
+        int buildIndex = SceneManager.GetActiveScene().buildIndex;
+        StartCoroutine(loadLevel(buildIndex));
+  
     }
 }

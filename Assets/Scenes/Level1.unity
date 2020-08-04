@@ -273,7 +273,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1317191854}
-        m_MethodName: loadNextLevel
+        m_MethodName: loadNextLevelCall
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -865,7 +865,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1317191854}
-        m_MethodName: restartLevel
+        m_MethodName: restartLevelCall
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

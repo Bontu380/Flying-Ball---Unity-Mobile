@@ -5,11 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-
-
-
-    public void startLevel()
+    public void startLevel()    //BURALAR TAMAMEN GEÇİCİ OYUN BİTİNCE DÖNÜLECEK
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        int buildIndex = SceneManager.GetActiveScene().buildIndex;
+        StartCoroutine(loadLevel(buildIndex + 1));
+    }
+
+    public IEnumerator loadLevel(int index)
+    {
+        AsyncOperation loadAsyncLevel = SceneManager.LoadSceneAsync(index);
+        while(!loadAsyncLevel.isDone)
+        {
+            Debug.Log("Loading");
+            yield return null;
+        }
     }
 }
