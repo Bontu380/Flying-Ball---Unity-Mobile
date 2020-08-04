@@ -95,7 +95,7 @@ public class GameController : MonoBehaviour
         player.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
 
 
-        // mainCam.orthographicSize = originalCamSize;
+     
         mainCam.transform.position = new Vector3(0f, 0f, -10f);
     }
 
