@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     private float velocityMultiplier = 10f;
     private float forceMultiplier;
     private float smoothFactor = 6f;
-    Touch touch;
+    private Touch touch;
     [SerializeField] private Vector2 currentSpeed;
     [SerializeField] private float currentSpeedMagnitude;
     [SerializeField] private float angle;

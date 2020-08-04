@@ -5,13 +5,13 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public Camera cam;
-    private float originalSize;
-    private float zoomOutSize;
+    public float originalSize;
+    public float zoomOutSize;
     private float zoomSmoothTime = 3.5f;
     public float countDownTime = 3f;
     public GameObject player;
     private Vector3 offset;
-    public float differenceBetweenSizes = 6f;
+    //public float differenceBetweenSizes = 6f;
 
     void Start()
     {
@@ -101,13 +101,13 @@ public class CameraController : MonoBehaviour
         yield return null;
     }
 
-    public void startZoomOutInSequence()
+    public void startZoomOutInSequence(float originalSize,float zoomOutSize)
     {
-        originalSize = cam.orthographicSize;
-        zoomOutSize = originalSize + differenceBetweenSizes;
+        this.originalSize = originalSize;
+        this.zoomOutSize = zoomOutSize;
 
-        Coroutine waitForZoomOut = StartCoroutine(zoomOut(zoomOutSize));
-        Coroutine waitForZoomIn = StartCoroutine(zoomIn(waitForZoomOut, originalSize));
+        Coroutine waitForZoomOut = StartCoroutine(zoomOut(this.zoomOutSize));
+        Coroutine waitForZoomIn = StartCoroutine(zoomIn(waitForZoomOut, this.originalSize));
         StartCoroutine(countdownToStart(waitForZoomIn, countDownTime));
 
     }

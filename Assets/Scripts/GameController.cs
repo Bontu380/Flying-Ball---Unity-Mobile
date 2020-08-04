@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour
     public Camera mainCam;
     public CameraController camController;
     public PlayerController playerController;
-    public float differenceBetweenSizes = 6f;
+    public float differenceBetweenSizes = 12f;
     public float countDownTime = 3f;
     public float originalCamSize;
     public float zoomOutSize;
@@ -49,7 +49,7 @@ public class GameController : MonoBehaviour
         zoomOutSize = originalCamSize + differenceBetweenSizes;
 
         Time.timeScale = 1f;
-        camController.startZoomOutInSequence();
+        camController.startZoomOutInSequence(originalCamSize,zoomOutSize);
        
  
     }
