@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
 
       
 
-        if (Input.touchCount > 0)
+        if (Input.touchCount > 0 )
         {
             touch = Input.GetTouch(0);
             if (touch.phase == TouchPhase.Began)
@@ -91,10 +91,11 @@ public class PlayerController : MonoBehaviour
         RaycastHit2D hit;
         hit = Physics2D.Raycast(transform.position, touchPosition - playerPosition, 30f, LayerMask.GetMask("Obstacle"));
 
-        playerRb.gravityScale = 1;
+       
        
         if (hit.collider != null)
         {
+            playerRb.gravityScale = 1;
             //grapplePoint = hit.point;
             grapplePoint = hit.transform.position;
             float distance = Vector3.Distance(grapplePoint,transform.position);

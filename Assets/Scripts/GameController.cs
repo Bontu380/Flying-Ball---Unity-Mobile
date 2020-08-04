@@ -62,6 +62,7 @@ public class GameController : MonoBehaviour
 
     public void levelPassed()
     {
+        playerController.releaseGrapple();
         pause = true;
         levelPassedPanel.SetActive(true);
     }
