@@ -12,7 +12,6 @@ public class GameController : MonoBehaviour
     public GameObject levelFailedPanel;
     public GameObject player;
     public Camera mainCam;
-    public CameraController camController;
     public PlayerController playerController;
     public float differenceBetweenSizes = 12f;
     public float countDownTime = 3f;
@@ -49,7 +48,7 @@ public class GameController : MonoBehaviour
         zoomOutSize = originalCamSize + differenceBetweenSizes;
 
         Time.timeScale = 1f;
-        camController.startZoomOutInSequence(originalCamSize,zoomOutSize);
+        CameraController.instance.startZoomOutInSequence(originalCamSize,zoomOutSize);
        
  
     }
@@ -97,6 +96,15 @@ public class GameController : MonoBehaviour
 
      
         mainCam.transform.position = new Vector3(0f, 0f, -10f);
+    }
+
+    public void resetEverything()
+    {
+        DontDestroy[] objects = GameObject.FindObjectsOfType<DontDestroy>();
+        for(int i = 0; i<objects.Length; i++)
+        {
+            Destroy(objects[i].gameObject);
+        }
     }
 
 

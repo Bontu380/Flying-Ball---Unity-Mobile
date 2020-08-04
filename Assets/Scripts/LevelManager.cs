@@ -24,11 +24,20 @@ public class LevelManager : MonoBehaviour
 
     public void loadNextLevel()
     {
-       
-      SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
-      GameController.instance.startGame();
 
+        int buildIndex = SceneManager.GetActiveScene().buildIndex;
 
+        if (buildIndex < SceneManager.sceneCountInBuildSettings -1)
+        {
+            SceneManager.LoadScene(buildIndex + 1);
+            GameController.instance.startGame();
+        }
+        else
+        {
+            GameController.instance.resetEverything();
+            SceneManager.LoadScene(0);
+            
+        }
     }
 
     public void restartLevel()

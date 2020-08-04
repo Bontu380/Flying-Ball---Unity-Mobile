@@ -11,8 +11,20 @@ public class CameraController : MonoBehaviour
     public float countDownTime = 3f;
     public GameObject player;
     private Vector3 offset;
-    //public float differenceBetweenSizes = 6f;
 
+    public static CameraController instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != null)
+        {
+            Destroy(gameObject);
+        }
+    }
     void Start()
     {
      
