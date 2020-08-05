@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance;
-   
+    public int totalLevelCount = 3;
 
     private void Awake()
     {
@@ -18,13 +18,22 @@ public class LevelManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+       //PlayerPrefs.SetInt("PassedMaxLevel", 0);
+
     }
 
- 
-
-   public void loadNextLevelCall()
+    private void Start()
     {
+        //totalLevelCount = getLevelCount();
+        Debug.Log(totalLevelCount);        
+    }
 
+
+
+    public void loadNextLevelCall()
+    {
+        //Burasi da düzenlenecek, menüye dön diye bir panel çıkarırız
         int buildIndex = SceneManager.GetActiveScene().buildIndex;
 
         if (buildIndex < SceneManager.sceneCountInBuildSettings -1)
@@ -60,15 +69,60 @@ public class LevelManager : MonoBehaviour
             yield return null;
         }
         Debug.Log("Level loaded");
+
+        //yield return new WaitForSeconds(1f);
         GameController.instance.startGame();
        
 
     }
 
- 
+    public void checkIfNewLevelUnlocked()
+    {
+        int currentLevel = SceneManager.GetActiveScene().buildIndex;
+
+        if(currentLevel >= LevelManager.instance.totalLevelCount)
+        {
+            return;
+        }
+
+        int maxPassedLevel = PlayerPrefs.GetInt("PassedMaxLevel");
+    
+        if (currentLevel > maxPassedLevel)
+        {
+            PlayerPrefs.SetInt("PassedMaxLevel",currentLevel); //Index = 0 zaten menu ekrani
+        
+        }
+    }
+
+
+    //CALISMIYOR EXCEPTION FIRLATIYOR
+
+    public int getLevelCount()
+    {
+        int count = 0;
+
+        string keyword = "Level";
+
+       
+
+        for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
+        {
+        
+          Scene sceneToCheck = SceneManager.GetSceneByBuildIndex(i);
+          if (sceneToCheck.name.Contains(keyword))
+          {
+                Debug.Log(sceneToCheck.name);
+            count++;
+          }
+        }
+        return count;
+    }
 
 
 
 
- 
+
+
+
+
 }

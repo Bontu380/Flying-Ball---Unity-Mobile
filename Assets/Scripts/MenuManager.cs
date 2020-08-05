@@ -57,7 +57,11 @@ public class MenuManager : MonoBehaviour
 
         //kaç level button olacağını kullanıcının önceden geçtiği levellere göre databaseden çekmek mantıklı
 
-        levelButtons = new Button[SceneManager.sceneCountInBuildSettings-1]; 
+        //levelButtons = new Button[SceneManager.sceneCountInBuildSettings-1]; 
+
+        int levelsAvaliableForPlay = PlayerPrefs.GetInt("PassedMaxLevel");
+
+        levelButtons = new Button[levelsAvaliableForPlay+1];
 
         for (int i = 0; i < levelButtons.Length; i++)
         {

@@ -67,6 +67,8 @@ public class GameController : MonoBehaviour
         PlayerController.instance.releaseGrapple();
         pause = true;
         levelPassedPanel.SetActive(true);
+        LevelManager.instance.checkIfNewLevelUnlocked();
+
     }
 
     public void pauseGame()
