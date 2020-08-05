@@ -12,11 +12,11 @@ public class GameController : MonoBehaviour
     public GameObject levelFailedPanel;
     public GameObject player;
     public Camera mainCam;
-    public PlayerController playerController;
     public float differenceBetweenSizes = 12f;
     public float countDownTime = 3f;
     public float originalCamSize;
     public float zoomOutSize;
+    public float zoomTime = 3.5f;
 
     void Awake()
     {
@@ -28,12 +28,13 @@ public class GameController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        originalCamSize = mainCam.orthographicSize;
+       
 
     }
 
     private void Start()
     {
+        originalCamSize = mainCam.orthographicSize;
         startGame();
     }
 
@@ -44,25 +45,25 @@ public class GameController : MonoBehaviour
 
         prepareToStart();
 
-        originalCamSize = mainCam.orthographicSize;
-        zoomOutSize = originalCamSize + differenceBetweenSizes;
+       
 
         Time.timeScale = 1f;
-        CameraController.instance.startZoomOutInSequence(originalCamSize,zoomOutSize);
+        CameraController.instance.startZoomOutInSequence(originalCamSize,zoomOutSize,zoomTime);
        
  
     }
 
     public void die()
     {
-        playerController.releaseGrapple();
+       
+        PlayerController.instance.releaseGrapple();
         pauseGame();
         levelFailedPanel.SetActive(true);
     }
 
     public void levelPassed()
     {
-        playerController.releaseGrapple();
+        PlayerController.instance.releaseGrapple();
         pause = true;
         levelPassedPanel.SetActive(true);
     }
@@ -95,7 +96,8 @@ public class GameController : MonoBehaviour
         player.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
 
 
-     
+        mainCam.orthographicSize = originalCamSize;
+        zoomOutSize = originalCamSize + differenceBetweenSizes;
         mainCam.transform.position = new Vector3(0f, 0f, -10f);
     }
 

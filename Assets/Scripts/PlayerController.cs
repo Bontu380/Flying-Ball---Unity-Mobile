@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
+    public static PlayerController instance;
+
     private Rigidbody2D playerRb;
     private SpringJoint2D joint;
     private LineRenderer lineRenderer;
@@ -16,13 +18,27 @@ public class PlayerController : MonoBehaviour
     private float smoothFactor = 6f;
     private Touch touch;
 
-    Coroutine zoomOutWait;
-  
+
+    public float zoomTime = 6f;
+    Coroutine zoomOut;
+    Coroutine zoomIn;
     public float zoomOutWhileGrappling = 8f;
  
     [SerializeField] private Vector2 currentSpeed;
     [SerializeField] private float currentSpeedMagnitude;
     [SerializeField] private float angle;
+
+    private void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+        }
+        else if(instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {
@@ -42,11 +58,7 @@ public class PlayerController : MonoBehaviour
         angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
         Quaternion newRotation = Quaternion.AngleAxis(angle, Vector3.forward);
         transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, smoothFactor * Time.deltaTime);
-
-
-    
-
-      
+     
 
         if (Input.touchCount > 0 )
         {
@@ -108,9 +120,16 @@ public class PlayerController : MonoBehaviour
             playerRb.gravityScale = 1;
      
             isGrappling = true;
-            if (this.zoomOutWait == null)
+
+            if(zoomIn != null)
             {
-                zoomOutWait = StartCoroutine(CameraController.instance.zoomOut(GameController.instance.originalCamSize + zoomOutWhileGrappling));
+                StopCoroutine(zoomIn);
+            }
+
+            if (zoomOut == null)
+            {
+                zoomOut = StartCoroutine(CameraController.instance.zoomOut(GameController.instance.originalCamSize + zoomOutWhileGrappling,zoomTime));
+                zoomIn = null;
             }
         }
         
@@ -122,8 +141,18 @@ public class PlayerController : MonoBehaviour
         lineRenderer.positionCount = 0;
         Destroy(jointNode);
         isGrappling = false;
-        StartCoroutine(CameraController.instance.zoomIn(zoomOutWait,GameController.instance.originalCamSize));
-        zoomOutWait = null;
+
+        if(zoomOut != null)
+        {
+            StopCoroutine(zoomOut);
+        }
+
+        if (zoomIn == null)
+        {
+            zoomIn = StartCoroutine(CameraController.instance.zoomIn(zoomOut, GameController.instance.originalCamSize, zoomTime));
+            zoomOut = null;
+        }
+            
 
     }
 

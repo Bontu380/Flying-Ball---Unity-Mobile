@@ -7,10 +7,10 @@ public class CameraController : MonoBehaviour
     public Camera cam;
     public float originalSize;
     public float zoomOutSize;
-    private float zoomSmoothTime = 3.5f;
     public float countDownTime = 3f;
     public GameObject player;
     private Vector3 offset;
+
 
     public static CameraController instance;
 
@@ -40,25 +40,26 @@ public class CameraController : MonoBehaviour
 
 
 
-    public IEnumerator zoomOut(float targetZoomOutSize)
+    public IEnumerator zoomOut(float targetZoomOutSize,float time)
     {
         while (cam.orthographicSize < targetZoomOutSize - 0.1f)
         {
-            cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, zoomOutSize, zoomSmoothTime * Time.deltaTime);
+            cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, zoomOutSize, time * Time.deltaTime);
             //cam.orthographicSize = Mathf.MoveTowards(cam.orthographicSize, zoomOutSize, denemeMoveTowards * Time.deltaTime);
             yield return null;
         }
         yield return new WaitForSeconds(1.5f);
     }
 
-    public IEnumerator zoomIn(Coroutine waitForZoomOut, float targetZoomInSize)
+    public IEnumerator zoomIn(Coroutine waitForZoomOut, float targetZoomInSize,float time)
     {
 
         yield return waitForZoomOut;
 
         while (cam.orthographicSize > targetZoomInSize + 0.1f)
         {
-            cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, originalSize, zoomSmoothTime * Time.deltaTime);
+
+            cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, originalSize, time * Time.deltaTime);
             yield return null;
         }
 
@@ -115,16 +116,14 @@ public class CameraController : MonoBehaviour
         yield return null;
     }
 
-    public void startZoomOutInSequence(float originalSize,float zoomOutSize)
+    public void startZoomOutInSequence(float originalSize,float zoomOutSize,float time)
     {
         this.originalSize = originalSize;
         this.zoomOutSize = zoomOutSize;
-
   
-        Coroutine waitForZoomOut = StartCoroutine(zoomOut(this.zoomOutSize));
-        Coroutine waitForZoomIn = StartCoroutine(zoomIn(waitForZoomOut, this.originalSize));
+        Coroutine waitForZoomOut = StartCoroutine(zoomOut(this.zoomOutSize,time));
+        Coroutine waitForZoomIn = StartCoroutine(zoomIn(waitForZoomOut, this.originalSize,time));
         StartCoroutine(countdownToStart(waitForZoomIn, countDownTime));
-
 
     }
 

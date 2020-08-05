@@ -355,11 +355,11 @@ MonoBehaviour:
   levelFailedPanel: {fileID: 1395012075}
   player: {fileID: 1170475728}
   mainCam: {fileID: 519420031}
-  playerController: {fileID: 1170475734}
   differenceBetweenSizes: 18
   countDownTime: 3
   originalCamSize: 0
   zoomOutSize: 0
+  zoomTime: 3.5
 --- !u!4 &58568052
 Transform:
   m_ObjectHideFlags: 0
@@ -1505,6 +1505,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGrappling: 0
+  zoomTime: 12
   zoomOutWhileGrappling: 8
   currentSpeed: {x: 0, y: 0}
   currentSpeedMagnitude: 0
