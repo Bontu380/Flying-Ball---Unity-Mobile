@@ -29,7 +29,7 @@ public class CameraController : MonoBehaviour
     {
      
         offset = transform.position - player.transform.position;
-
+        originalSize = GameController.instance.originalCamSize;
     }
 
 

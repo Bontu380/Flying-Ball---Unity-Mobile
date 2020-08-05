@@ -12,6 +12,9 @@ public class MenuManager : MonoBehaviour
     public GameObject mainMenuPanel;
     public GameObject levelSelectPanel;
 
+    public GameObject dontDestroyObjectsForLevels;
+    //public GameObject dontDestroyObjectsForEndless;
+
     public Button buttonPrefab;
 
     private Button[] levelButtons;
@@ -76,11 +79,22 @@ public class MenuManager : MonoBehaviour
     }
 
 
-    void onClickLevelButton()
+    public void onClickLevelButton()
     {
         GameObject selectedGameObject = EventSystem.current.currentSelectedGameObject;
         int buildIndex = System.Array.IndexOf(levelButtons, selectedGameObject.GetComponent<Button>());
-        StartCoroutine(loadLevel(buildIndex+1));
+
+        for (int i = 0; i < dontDestroyObjectsForLevels.transform.childCount-1; i++)
+        {
+            dontDestroyObjectsForLevels.transform.GetChild(i).gameObject.SetActive(true);
+
+        }
+
+        LevelManager.instance.loadLevelCall(buildIndex + 1);
+        
 
     }
+
+
+
 }

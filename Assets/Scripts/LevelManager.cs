@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance;
-    public List<GameObject> additiveObjects;
+   
 
     private void Awake()
     {
@@ -39,6 +39,18 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    public void restartLevelCall()
+    {
+        int buildIndex = SceneManager.GetActiveScene().buildIndex;
+        StartCoroutine(loadLevel(buildIndex));
+
+    }
+
+    public void loadLevelCall(int buildIndex)
+    {
+        StartCoroutine(loadLevel(buildIndex));
+    }
+
     public IEnumerator loadLevel(int buildIndexToLoad){
 
         AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync(buildIndexToLoad);
@@ -47,15 +59,16 @@ public class LevelManager : MonoBehaviour
             Debug.Log("Loading");
             yield return null;
         }
+        Debug.Log("Level loaded");
         GameController.instance.startGame();
+       
 
     }
 
+ 
 
-    public void restartLevelCall()
-    {
-        int buildIndex = SceneManager.GetActiveScene().buildIndex;
-        StartCoroutine(loadLevel(buildIndex));
-  
-    }
+
+
+
+ 
 }

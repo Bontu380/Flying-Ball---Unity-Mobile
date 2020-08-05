@@ -28,21 +28,22 @@ public class GameController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-       
+        originalCamSize = mainCam.orthographicSize;
+
 
     }
 
     private void Start()
     {
-        originalCamSize = mainCam.orthographicSize;
-        startGame();
+        
+   //     startGame();
     }
 
 
 
     public void startGame()
     {
-
+        Debug.Log("Start game called");
         prepareToStart();
 
        
