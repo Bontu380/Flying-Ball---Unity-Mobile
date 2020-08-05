@@ -15,6 +15,11 @@ public class PlayerController : MonoBehaviour
     private float forceMultiplier;
     private float smoothFactor = 6f;
     private Touch touch;
+
+    Coroutine zoomOutWait;
+  
+    public float zoomOutWhileGrappling = 8f;
+ 
     [SerializeField] private Vector2 currentSpeed;
     [SerializeField] private float currentSpeedMagnitude;
     [SerializeField] private float angle;
@@ -103,6 +108,10 @@ public class PlayerController : MonoBehaviour
             playerRb.gravityScale = 1;
      
             isGrappling = true;
+            if (this.zoomOutWait == null)
+            {
+                zoomOutWait = StartCoroutine(CameraController.instance.zoomOut(GameController.instance.originalCamSize + zoomOutWhileGrappling));
+            }
         }
         
  
@@ -113,7 +122,9 @@ public class PlayerController : MonoBehaviour
         lineRenderer.positionCount = 0;
         Destroy(jointNode);
         isGrappling = false;
-        
+        StartCoroutine(CameraController.instance.zoomIn(zoomOutWait,GameController.instance.originalCamSize));
+        zoomOutWait = null;
+
     }
 
     public void drawRope()
