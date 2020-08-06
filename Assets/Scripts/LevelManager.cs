@@ -83,8 +83,6 @@ public class LevelManager : MonoBehaviour
     {
         int currentLevel = SceneManager.GetActiveScene().buildIndex;
 
-
-
         if(currentLevel > LevelManager.instance.totalLevelCount)
         {
             return;

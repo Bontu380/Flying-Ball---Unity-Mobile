@@ -44,8 +44,12 @@ public class MenuManager : MonoBehaviour
         levelSelectPanel.SetActive(true);
         
 
-        
+    }
 
+    public void closeLevelSelectPanel()
+    {
+        levelSelectPanel.SetActive(false);
+        mainMenuPanel.SetActive(true);
 
     }
 
