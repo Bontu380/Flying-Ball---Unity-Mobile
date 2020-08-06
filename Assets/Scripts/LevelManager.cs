@@ -100,8 +100,6 @@ public class LevelManager : MonoBehaviour
     public void goToMenu()
     {
         GameController.instance.resetEverything();
-        //GameController.instance.levelFailedPanel.SetActive(false);
-        //GameController.instance.levelPassedPanel.SetActive(false);
         StartCoroutine(loadLevel(0));
     }
 

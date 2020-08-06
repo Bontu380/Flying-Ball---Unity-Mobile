@@ -66,6 +66,8 @@ public class GameController : MonoBehaviour
     {
         PlayerController.instance.releaseGrapple();
         pause = true;
+
+        //BURADA ALL LEVELS COMPLETED DISPLAY EDILECEK
         levelPassedPanel.SetActive(true);
         LevelManager.instance.checkIfNewLevelUnlocked();
 
