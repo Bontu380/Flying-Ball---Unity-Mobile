@@ -52,31 +52,46 @@ public class MenuManager : MonoBehaviour
     public void createButtonsForLevelPage()
     {
 
-        float yPos = Screen.height / 2;
+        float yPos = levelSelectPanel.transform.position.y + 100f ;
         float xPos = Screen.width / 2;
 
         //kaç level button olacağını kullanıcının önceden geçtiği levellere göre databaseden çekmek mantıklı
 
         //levelButtons = new Button[SceneManager.sceneCountInBuildSettings-1]; 
 
-        int levelsAvaliableForPlay = PlayerPrefs.GetInt("PassedMaxLevel");
+        int levelsAvaliableForPlay = LevelManager.instance.getPassedMaxLevel();
+        Debug.Log(levelsAvaliableForPlay);
+
 
         levelButtons = new Button[levelsAvaliableForPlay+1];
 
         for (int i = 0; i < levelButtons.Length; i++)
         {
         
-
+            if(i == LevelManager.instance.totalLevelCount)
+            {
+                break;
+            }
+            
             levelButtons[i] = (Button)Instantiate(buttonPrefab);
 
             levelButtons[i].transform.GetChild(0).GetComponent<Text>().text += " " + (i + 1);
 
+
             levelButtons[i].transform.SetParent(levelSelectPanel.transform);
 
-            levelButtons[i].transform.position = new Vector3(xPos , yPos, 0f);
-            yPos -= 50f;
+            levelButtons[i].transform.position = new Vector3(xPos, yPos, 0f);
+         
+
+          
+            yPos -= 120f;
 
             levelButtons[i].onClick.AddListener(onClickLevelButton);
+
+            if(i < levelButtons.Length-1 || i == LevelManager.instance.totalLevelCount)
+            {
+                levelButtons[i].transform.GetChild(1).gameObject.SetActive(true); //0 is text 1 is check image 
+            }
 
             
         }

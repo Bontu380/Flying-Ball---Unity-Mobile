@@ -19,15 +19,15 @@ public class LevelManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-       //PlayerPrefs.SetInt("PassedMaxLevel", 0);
+       // setPassedMaxLevel(0);
 
     }
 
-    private void Start()
-    {
+    //private void Start()
+   // {
         //totalLevelCount = getLevelCount();
-        Debug.Log(totalLevelCount);        
-    }
+              
+    //}
 
 
 
@@ -42,6 +42,7 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
+            //Burada başka bir panel açılacak bütün bölümler bitti gibi
             GameController.instance.resetEverything();
             SceneManager.LoadScene(0);
             
@@ -71,8 +72,10 @@ public class LevelManager : MonoBehaviour
         Debug.Log("Level loaded");
 
         //yield return new WaitForSeconds(1f);
-        GameController.instance.startGame();
-       
+        if (buildIndexToLoad != 0)
+        {
+            GameController.instance.startGame();
+        }
 
     }
 
@@ -80,18 +83,28 @@ public class LevelManager : MonoBehaviour
     {
         int currentLevel = SceneManager.GetActiveScene().buildIndex;
 
-        if(currentLevel >= LevelManager.instance.totalLevelCount)
+
+
+        if(currentLevel > LevelManager.instance.totalLevelCount)
         {
             return;
         }
 
-        int maxPassedLevel = PlayerPrefs.GetInt("PassedMaxLevel");
+        int maxPassedLevel = getPassedMaxLevel();
     
         if (currentLevel > maxPassedLevel)
         {
-            PlayerPrefs.SetInt("PassedMaxLevel",currentLevel); //Index = 0 zaten menu ekrani
+           setPassedMaxLevel(currentLevel); //Index = 0 zaten menu ekrani
         
         }
+    }
+
+    public void goToMenu()
+    {
+        GameController.instance.resetEverything();
+        //GameController.instance.levelFailedPanel.SetActive(false);
+        //GameController.instance.levelPassedPanel.SetActive(false);
+        StartCoroutine(loadLevel(0));
     }
 
 
@@ -111,12 +124,24 @@ public class LevelManager : MonoBehaviour
           Scene sceneToCheck = SceneManager.GetSceneByBuildIndex(i);
           if (sceneToCheck.name.Contains(keyword))
           {
-                Debug.Log(sceneToCheck.name);
+               
             count++;
           }
         }
         return count;
     }
+
+    public int getPassedMaxLevel()
+    {
+        return PlayerPrefs.GetInt("PassedMaxLevel");
+    }
+
+    public void setPassedMaxLevel(int levelIndex)
+    {
+        PlayerPrefs.SetInt("PassedMaxLevel", levelIndex);
+    }
+
+  
 
 
 
