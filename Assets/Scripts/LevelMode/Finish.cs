@@ -8,8 +8,8 @@ public class Finish : MonoBehaviour
     {
         if (collision.transform.CompareTag("Player"))
         {
-            PlayerController pc = collision.gameObject.GetComponent<PlayerController>();
-            pc.releaseGrapple();
+            Debug.Log("Collided with player");
+            PlayerController.instance.releaseGrapple();
             GameController.instance.levelPassed();
         }
     }

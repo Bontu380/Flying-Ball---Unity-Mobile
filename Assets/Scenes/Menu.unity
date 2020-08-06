@@ -6273,6 +6273,7 @@ MonoBehaviour:
   countDownText: {fileID: 1218027776}
   levelPassedPanel: {fileID: 450065059}
   levelFailedPanel: {fileID: 1533988224}
+  allLevelsPassedPanel: {fileID: 1242936808}
   player: {fileID: 257318598}
   mainCam: {fileID: 934404899}
   differenceBetweenSizes: 18

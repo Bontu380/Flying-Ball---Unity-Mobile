@@ -7,6 +7,7 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance;
     public int totalLevelCount = 3;
+    private bool isMaxLevelReached;
 
     private void Awake()
     {
@@ -40,13 +41,13 @@ public class LevelManager : MonoBehaviour
         {
             StartCoroutine(loadLevel(buildIndex + 1));
         }
-        else
+       /* else
         {
             //Burada başka bir panel açılacak bütün bölümler bitti gibi
             GameController.instance.resetEverything();
             SceneManager.LoadScene(0);
             
-        }
+        } */
     }
 
     public void restartLevelCall()
@@ -83,17 +84,17 @@ public class LevelManager : MonoBehaviour
     {
         int currentLevel = SceneManager.GetActiveScene().buildIndex;
 
-        if(currentLevel > LevelManager.instance.totalLevelCount)
+        if (currentLevel > LevelManager.instance.totalLevelCount)
         {
             return;
         }
 
         int maxPassedLevel = getPassedMaxLevel();
-    
+
         if (currentLevel > maxPassedLevel)
         {
-           setPassedMaxLevel(currentLevel); //Index = 0 zaten menu ekrani
-        
+            setPassedMaxLevel(currentLevel); //Index = 0 zaten menu ekrani
+
         }
     }
 
@@ -135,6 +136,20 @@ public class LevelManager : MonoBehaviour
     public void setPassedMaxLevel(int levelIndex)
     {
         PlayerPrefs.SetInt("PassedMaxLevel", levelIndex);
+    }
+
+    public bool checkIfMaxLevelReached()
+    {
+        bool flag = false;
+
+        int passedMaxLevel = SceneManager.GetActiveScene().buildIndex;
+
+        if (passedMaxLevel >= totalLevelCount)
+        {
+            flag = true;
+        }
+
+        return flag;
     }
 
   

@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
     public Text countDownText;
     public GameObject levelPassedPanel;
     public GameObject levelFailedPanel;
+    public GameObject allLevelsPassedPanel;
     public GameObject player;
     public Camera mainCam;
     public float differenceBetweenSizes = 12f;
@@ -33,11 +34,11 @@ public class GameController : MonoBehaviour
 
     }
 
-    private void Start()
-    {
+    //private void Start()
+   // {
         
    //     startGame();
-    }
+    //}
 
 
 
@@ -64,13 +65,23 @@ public class GameController : MonoBehaviour
 
     public void levelPassed()
     {
-        PlayerController.instance.releaseGrapple();
+       
         pause = true;
 
-        //BURADA ALL LEVELS COMPLETED DISPLAY EDILECEK
-        levelPassedPanel.SetActive(true);
         LevelManager.instance.checkIfNewLevelUnlocked();
 
+        if (LevelManager.instance.checkIfMaxLevelReached())
+        {
+            allLevelsPassedPanel.SetActive(true);
+        }
+        else
+        {
+           levelPassedPanel.SetActive(true);
+        }
+        
+        Debug.Log("CheckIfNewLevelUnlocked i cagiriyorum");
+        
+        
     }
 
     public void pauseGame()
