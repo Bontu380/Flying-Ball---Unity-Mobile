@@ -14,15 +14,16 @@ public class PlayerController : MonoBehaviour
     public bool isGrappling = false;
     private SpringJoint2D jointNode;
     private float velocityMultiplier = 10f;
-    private float forceMultiplier;
+   // private float forceMultiplier;
     private float smoothFactor = 6f;
+    [SerializeField] private float hookRange;
     private Touch touch;
 
-
+    public float zoomOutWhileGrappling = 8f;
     public float zoomTime = 3f;
     Coroutine zoomOut;
     Coroutine zoomIn;
-    public float zoomOutWhileGrappling = 8f;
+
  
     [SerializeField] private Vector2 currentSpeed;
     [SerializeField] private float currentSpeedMagnitude;
@@ -44,7 +45,7 @@ public class PlayerController : MonoBehaviour
     {
         playerRb = GetComponent<Rigidbody2D>();
         lineRenderer = GetComponent<LineRenderer>();
-
+        calculateHookRange();
     }
 
 
@@ -106,9 +107,13 @@ public class PlayerController : MonoBehaviour
         lineRenderer.positionCount = 2;
 
         RaycastHit2D hit;
-        hit = Physics2D.Raycast(playerPosition, touchPosition - playerPosition, 30f, LayerMask.GetMask("Obstacle"));
+        //hit = Physics2D.Raycast(playerPosition, touchPosition - playerPosition, 30f, LayerMask.GetMask("Obstacle"));
+
+        hit = Physics2D.CircleCast(playerPosition, 1.5f ,touchPosition - playerPosition, hookRange, LayerMask.GetMask("Obstacle"));
        
-       
+
+        
+
         if (hit.collider != null)
         {
             playerRb.gravityScale = 1;
@@ -174,7 +179,18 @@ public class PlayerController : MonoBehaviour
          
     }
 
+    public void calculateHookRange()
+    {
+        //float y = Screen.height / 2;
+        //float x = Screen.width / 2;
 
+        float x = GameController.instance.originalCamSize + zoomOutWhileGrappling;
+
+        //Debug.Log("Screen height/2 = "+y);
+        Debug.Log("Screen width/2 = " + x);
+
+        hookRange = Mathf.Sqrt(Mathf.Pow(x,2) + Mathf.Pow(x,2));
+    }
 
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -184,7 +200,5 @@ public class PlayerController : MonoBehaviour
             GameController.instance.die();
         }
     }
-
-
 
 }
