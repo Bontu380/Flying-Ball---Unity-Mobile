@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     private Touch touch;
 
 
-    public float zoomTime = 6f;
+    public float zoomTime = 3f;
     Coroutine zoomOut;
     Coroutine zoomIn;
     public float zoomOutWhileGrappling = 8f;
@@ -106,8 +106,7 @@ public class PlayerController : MonoBehaviour
         lineRenderer.positionCount = 2;
 
         RaycastHit2D hit;
-        hit = Physics2D.Raycast(transform.position, touchPosition - playerPosition, 30f, LayerMask.GetMask("Obstacle"));
-
+        hit = Physics2D.Raycast(playerPosition, touchPosition - playerPosition, 30f, LayerMask.GetMask("Obstacle"));
        
        
         if (hit.collider != null)

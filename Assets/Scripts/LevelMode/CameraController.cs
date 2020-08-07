@@ -6,7 +6,6 @@ public class CameraController : MonoBehaviour
 {
     public Camera cam;
     public float originalSize;
-    public float zoomOutSize;
     public float countDownTime = 3f;
     public GameObject player;
     private Vector3 offset;
@@ -44,7 +43,7 @@ public class CameraController : MonoBehaviour
     {
         while (cam.orthographicSize < targetZoomOutSize - 0.1f)
         {
-            cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, zoomOutSize, time * Time.deltaTime);
+            cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetZoomOutSize, time * Time.deltaTime);
             //cam.orthographicSize = Mathf.MoveTowards(cam.orthographicSize, zoomOutSize, denemeMoveTowards * Time.deltaTime);
             yield return null;
         }
@@ -118,11 +117,9 @@ public class CameraController : MonoBehaviour
 
     public void startZoomOutInSequence(float originalSize,float zoomOutSize,float time)
     {
-        this.originalSize = originalSize;
-        this.zoomOutSize = zoomOutSize;
-  
-        Coroutine waitForZoomOut = StartCoroutine(zoomOut(this.zoomOutSize,time));
-        Coroutine waitForZoomIn = StartCoroutine(zoomIn(waitForZoomOut, this.originalSize,time));
+        
+        Coroutine waitForZoomOut = StartCoroutine(zoomOut(zoomOutSize,time));
+        Coroutine waitForZoomIn = StartCoroutine(zoomIn(waitForZoomOut, originalSize,time));
         StartCoroutine(countdownToStart(waitForZoomIn, countDownTime));
 
     }
