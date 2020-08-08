@@ -64,7 +64,6 @@ public class MenuManager : MonoBehaviour
         //levelButtons = new Button[SceneManager.sceneCountInBuildSettings-1]; 
 
         int levelsAvaliableForPlay = LevelManager.instance.getPassedMaxLevel();
-        Debug.Log(levelsAvaliableForPlay);
 
 
         levelButtons = new Button[levelsAvaliableForPlay+1];
