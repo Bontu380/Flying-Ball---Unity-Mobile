@@ -69,7 +69,7 @@ public class CameraController : MonoBehaviour
     {
         yield return waitForZoomIn;
 
-        int differenceBetweenTextFonts = 32;
+        int differenceBetweenTextFonts = 96;
         int originalFontSize = GameController.instance.countDownText.fontSize;
         int targetFontSize = originalFontSize + differenceBetweenTextFonts;
 

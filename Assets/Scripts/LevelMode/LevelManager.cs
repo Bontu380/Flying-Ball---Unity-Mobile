@@ -101,6 +101,7 @@ public class LevelManager : MonoBehaviour
     public void goToMenu()
     {
         GameController.instance.resetEverything();
+
         StartCoroutine(loadLevel(0));
     }
 

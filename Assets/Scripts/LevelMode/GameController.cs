@@ -79,7 +79,7 @@ public class GameController : MonoBehaviour
            levelPassedPanel.SetActive(true);
         }
         
-        Debug.Log("CheckIfNewLevelUnlocked i cagiriyorum");
+       
         
         
     }
