@@ -114,6 +114,7 @@ public class MenuManager : MonoBehaviour
         int buildIndex = System.Array.IndexOf(levelButtons, selectedGameObject.GetComponent<Button>());
 
         levelSelectPanel.SetActive(false);
+        Camera.main.gameObject.SetActive(false);
 
         LevelManager.instance.loadLevelCall(buildIndex + 1);
 

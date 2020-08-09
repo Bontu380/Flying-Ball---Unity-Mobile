@@ -117,6 +117,7 @@ public class GameController : MonoBehaviour
 
     public void deactivateEverything()
     {
+
         DontDestroy scriptOnObject = GameObject.FindObjectOfType<DontDestroy>();
         //ENDLESSINKI MI LEVELLERINKI MI DIYE BIR IF CHECK KOYABILIRSIN
         GameObject objectItself = scriptOnObject.gameObject;

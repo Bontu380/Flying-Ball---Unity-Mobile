@@ -17,11 +17,16 @@ public class MovingBackground : MonoBehaviour
     private float backGroundWidth;
     private float backGroundHeight;
 
+    public Camera cam;
+
     SpriteRenderer sr;
 
 
     private void Awake()
     {
+
+       
+
         initializeAttributes();
         setBackgroundSize();
         nextPlacePos = Vector3.zero + new Vector3(camWidth-transform.localScale.x ,0f,0f);
@@ -51,10 +56,17 @@ public class MovingBackground : MonoBehaviour
 
     public void initializeAttributes()
     {
+
+        Debug.Log(cam.orthographicSize);
+
         sr = GetComponent<SpriteRenderer>();
 
-        camHeight = 2f * Camera.main.orthographicSize;
+        camHeight = 2f * cam.orthographicSize;
+        Debug.Log(camHeight);
+
         camWidth = camHeight * Camera.main.aspect;
+        Debug.Log(camWidth);
+
 
         backGroundWidth = sr.sprite.bounds.size.x;
         backGroundHeight = sr.sprite.bounds.size.y;

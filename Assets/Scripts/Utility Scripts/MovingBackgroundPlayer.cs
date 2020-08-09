@@ -42,7 +42,7 @@ public class MovingBackgroundPlayer : MonoBehaviour
             ps.Stop();
             if (goingRight && transform.position.x > anchorPoint.x)
             {
-                Debug.Log("If");
+                //Debug.Log("If");
 
                 transform.rotation = Quaternion.AngleAxis(180f, transform.up) * transform.rotation;
                 goingRight = false;
@@ -50,7 +50,7 @@ public class MovingBackgroundPlayer : MonoBehaviour
             }
             else if (!goingRight && transform.position.x <= anchorPoint.x)
             {
-                Debug.Log("Else");
+                //Debug.Log("Else");
 
                 transform.rotation = Quaternion.AngleAxis(-180f, transform.up) * transform.rotation;
                 goingRight = true;

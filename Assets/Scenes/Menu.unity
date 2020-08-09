@@ -329,6 +329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
+  cam: {fileID: 393334793}
 --- !u!1 &171955062
 GameObject:
   m_ObjectHideFlags: 0
@@ -5748,6 +5749,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
+  cam: {fileID: 393334793}
 --- !u!1 &318214041
 GameObject:
   m_ObjectHideFlags: 0
