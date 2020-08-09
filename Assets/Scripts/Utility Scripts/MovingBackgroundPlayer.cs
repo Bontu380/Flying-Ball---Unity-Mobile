@@ -37,37 +37,6 @@ public class MovingBackgroundPlayer : MonoBehaviour
     void Update()
     {
 
-
-        /*
-        if (transform.position.y >= Camera.main.orthographicSize + 1.5f)
-        {
-            Vector3 direction = lineRenderer.GetPosition(1) - lineRenderer.GetPosition(0);
-            float angle = Vector3.Angle(transform.position, direction);
-
-            if (goingRight && angle >= 90f && transform.position.x > anchorPoint.x )
-            {
-                Debug.Log("If");
-
-                transform.rotation = Quaternion.AngleAxis(180f, direction) *  transform.rotation;
-                goingRight = false;
-                playerRb.velocity = Vector2.zero;
-            }
-            else if(!goingRight && transform.position.x <= anchorPoint.x)
-            {
-                Debug.Log("Else");
-              
-                transform.rotation = Quaternion.AngleAxis(-180f, direction) * transform.rotation;
-                goingRight = true;
-
-            }
-            //joint.distance = Random.Range(4.5f, 11f);
-            playerRb.velocity = transform.right * fixedVelocity;
-            return;
-        }
-        faceVelocityDirection();
-
-    */
-
         if (transform.position.y >= Camera.main.orthographicSize + 8f)
         {
             ps.Stop();
@@ -89,10 +58,11 @@ public class MovingBackgroundPlayer : MonoBehaviour
             }
             randomizeJointPointsAndDistance();
             playerRb.velocity = transform.right * fixedVelocity;
-            ps.Play();
 
+            ps.Play();
             return;
         }
+       
         faceVelocityDirection();
 
     }

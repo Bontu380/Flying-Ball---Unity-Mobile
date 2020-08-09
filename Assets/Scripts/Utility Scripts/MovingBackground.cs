@@ -17,8 +17,6 @@ public class MovingBackground : MonoBehaviour
     private float backGroundWidth;
     private float backGroundHeight;
 
-
-
     SpriteRenderer sr;
 
 

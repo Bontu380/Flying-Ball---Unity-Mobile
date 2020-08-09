@@ -4,7 +4,18 @@ using UnityEngine;
 
 public class DontDestroy : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private static DontDestroy instance;
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != null)
+        {
+            Destroy(gameObject);
+        }
+    }
     void Start()
     {
         GameObject[] objs = GameObject.FindGameObjectsWithTag(this.gameObject.tag);

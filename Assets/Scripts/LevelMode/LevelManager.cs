@@ -41,13 +41,7 @@ public class LevelManager : MonoBehaviour
         {
             StartCoroutine(loadLevel(buildIndex + 1));
         }
-       /* else
-        {
-            //Burada başka bir panel açılacak bütün bölümler bitti gibi
-            GameController.instance.resetEverything();
-            SceneManager.LoadScene(0);
-            
-        } */
+     
     }
 
     public void restartLevelCall()
@@ -64,6 +58,12 @@ public class LevelManager : MonoBehaviour
 
     public IEnumerator loadLevel(int buildIndexToLoad){
 
+        GameController.instance.allLevelsPassedPanel.SetActive(false);
+        GameController.instance.levelPassedPanel.SetActive(false);
+        GameController.instance.levelFailedPanel.SetActive(false);
+
+        GameController.instance.loadingScreen.SetActive(true);
+
         AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync(buildIndexToLoad);
         while (!asyncLoadLevel.isDone)
         {
@@ -72,12 +72,21 @@ public class LevelManager : MonoBehaviour
         }
         Debug.Log("Level loaded");
 
-        //yield return new WaitForSeconds(1f);
+       
+        GameController.instance.loadingScreen.SetActive(false);
+
         if (buildIndexToLoad != 0)
         {
             GameController.instance.startGame();
         }
-
+        else
+        {
+           
+            GameController.instance.deactivateEverything();
+            GameController.instance.resumeGame();
+        }
+        
+       
     }
 
     public void checkIfNewLevelUnlocked()
@@ -100,9 +109,12 @@ public class LevelManager : MonoBehaviour
 
     public void goToMenu()
     {
-        GameController.instance.resetEverything();
 
-        StartCoroutine(loadLevel(0));
+       // Coroutine waitToLoad = StartCoroutine(loadLevel(0));
+       // GameController.instance.resetEverything(waitToLoad);
+
+         StartCoroutine(loadLevel(0));
+         
     }
 
 
@@ -152,6 +164,8 @@ public class LevelManager : MonoBehaviour
 
         return flag;
     }
+
+
 
   
 

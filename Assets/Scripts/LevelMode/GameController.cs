@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
     public GameObject levelPassedPanel;
     public GameObject levelFailedPanel;
     public GameObject allLevelsPassedPanel;
+    public GameObject loadingScreen;
     public GameObject player;
     public Camera mainCam;
     public float differenceBetweenSizes = 12f;
@@ -34,11 +35,6 @@ public class GameController : MonoBehaviour
 
     }
 
-    //private void Start()
-   // {
-        
-   //     startGame();
-    //}
 
 
 
@@ -117,12 +113,20 @@ public class GameController : MonoBehaviour
         mainCam.transform.position = new Vector3(0f, 0f, -10f);
     }
 
-    public void resetEverything()
+ 
+
+    public void deactivateEverything()
     {
-        DontDestroy[] objects = GameObject.FindObjectsOfType<DontDestroy>();
-        for(int i = 0; i<objects.Length; i++)
+        DontDestroy scriptOnObject = GameObject.FindObjectOfType<DontDestroy>();
+        //ENDLESSINKI MI LEVELLERINKI MI DIYE BIR IF CHECK KOYABILIRSIN
+        GameObject objectItself = scriptOnObject.gameObject;
+
+        for (int i = 0; i < objectItself.transform.childCount; i++)
         {
-            Destroy(objects[i].gameObject);
+            if (objectItself.transform.GetChild(i).transform.name != "ManagersForLevels")
+            {
+                objectItself.transform.GetChild(i).gameObject.SetActive(false);
+            }
         }
     }
 

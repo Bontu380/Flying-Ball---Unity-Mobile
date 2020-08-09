@@ -12,12 +12,19 @@ public class MenuManager : MonoBehaviour
     public GameObject mainMenuPanel;
     public GameObject levelSelectPanel;
 
-    public GameObject dontDestroyObjectsForLevels;
+    private GameObject dontDestroyObjectsForLevels;
     //public GameObject dontDestroyObjectsForEndless;
 
     public Button buttonPrefab;
 
     private Button[] levelButtons;
+
+
+    private void Awake()
+    {
+        assignDontDestroyObjects();
+           
+    }
 
     public void startLevel()    //BURALAR TAMAMEN GEÇİCİ OYUN BİTİNCE DÖNÜLECEK
     {
@@ -106,14 +113,22 @@ public class MenuManager : MonoBehaviour
         GameObject selectedGameObject = EventSystem.current.currentSelectedGameObject;
         int buildIndex = System.Array.IndexOf(levelButtons, selectedGameObject.GetComponent<Button>());
 
-        for (int i = 0; i < dontDestroyObjectsForLevels.transform.childCount-1; i++)
+        levelSelectPanel.SetActive(false);
+
+        LevelManager.instance.loadLevelCall(buildIndex + 1);
+
+        for (int i = 0; i < dontDestroyObjectsForLevels.transform.childCount; i++)
         {
             dontDestroyObjectsForLevels.transform.GetChild(i).gameObject.SetActive(true);
 
         }
 
-        LevelManager.instance.loadLevelCall(buildIndex + 1);
-        
+    }
+
+    public void assignDontDestroyObjects()
+    {
+      DontDestroy dontDestroyScript = GameObject.FindObjectOfType<DontDestroy>();
+        dontDestroyObjectsForLevels = dontDestroyScript.gameObject;
 
     }
 
