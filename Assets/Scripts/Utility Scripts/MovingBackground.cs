@@ -11,11 +11,11 @@ public class MovingBackground : MonoBehaviour
 
     private Vector3 originalPos;
 
-    private float camWidth;
-    private float camHeight;
+    private static float camWidth;
+    private static float camHeight;
 
-    private float backGroundWidth;
-    private float backGroundHeight;
+    private float backgroundWidth;
+    private float backgroundHeight;
 
     public Camera cam;
 
@@ -25,14 +25,18 @@ public class MovingBackground : MonoBehaviour
     private void Awake()
     {
 
-       
 
-        initializeAttributes();
-        setBackgroundSize();
+
+        // initializeAttributes();
+        //setBackgroundSize();
+        resizeToFitScreen();
         nextPlacePos = Vector3.zero + new Vector3(camWidth-transform.localScale.x ,0f,0f);
         originalPos = transform.position;
-    }
+     
 
+        
+        
+    }
 
 
     void Update()
@@ -44,14 +48,12 @@ public class MovingBackground : MonoBehaviour
         {
             transform.position = nextPlacePos;
         }
-        
-        
-        
+          
     }
 
     public void setBackgroundSize()
     {
-        transform.localScale = new Vector3(camWidth / backGroundWidth, camHeight / backGroundHeight, 0f);
+        transform.localScale = new Vector3(camWidth / backgroundWidth, camHeight / backgroundHeight, 0f);
     }
 
     public void initializeAttributes()
@@ -59,7 +61,7 @@ public class MovingBackground : MonoBehaviour
 
         Debug.Log(cam.orthographicSize);
 
-        sr = GetComponent<SpriteRenderer>();
+        //sr = GetComponent<SpriteRenderer>();
 
         camHeight = 2f * cam.orthographicSize;
         Debug.Log(camHeight);
@@ -68,8 +70,32 @@ public class MovingBackground : MonoBehaviour
         Debug.Log(camWidth);
 
 
-        backGroundWidth = sr.sprite.bounds.size.x;
-        backGroundHeight = sr.sprite.bounds.size.y;
+        //backGroundWidth = sr.sprite.bounds.size.x;
+        //backGroundHeight = sr.sprite.bounds.size.y;
 
+    }
+
+    public void resizeToFitScreen()
+    {
+
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if (sr == null) return;
+
+        transform.localScale = new Vector3(1, 1, 1);
+
+        backgroundWidth = sr.sprite.bounds.size.x;
+        backgroundHeight = sr.sprite.bounds.size.y;
+
+        if (camHeight == 0f && camWidth == 0f)
+        {
+            camHeight = Camera.main.orthographicSize * 2.0f;
+            camWidth = camHeight / Screen.height * Screen.width;
+        }
+
+        Debug.Log("Cam size: " + cam.orthographicSize);
+        Debug.Log("Cam height: "+ camHeight);
+        Debug.Log("Cam width:" + camWidth);
+
+        transform.localScale = new Vector3(camWidth / backgroundWidth, camHeight/ backgroundHeight);
     }
 }

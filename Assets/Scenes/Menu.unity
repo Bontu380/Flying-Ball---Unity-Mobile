@@ -6086,7 +6086,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -13292,7 +13292,7 @@ LineRenderer:
   m_SortingOrder: 1
   m_Positions:
   - {x: -4.81, y: -0.42, z: 0}
-  - {x: 0, y: 7, z: 0}
+  - {x: 0, y: 8, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -13363,7 +13363,7 @@ SpringJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 0
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0, y: 7}
+  m_ConnectedAnchor: {x: 0, y: 8}
   m_AutoConfigureDistance: 0
   m_Distance: 8.842652
   m_DampingRatio: 0
