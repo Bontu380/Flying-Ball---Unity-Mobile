@@ -92,10 +92,6 @@ public class MovingBackground : MonoBehaviour
             camWidth = camHeight / Screen.height * Screen.width;
         }
 
-        Debug.Log("Cam size: " + cam.orthographicSize);
-        Debug.Log("Cam height: "+ camHeight);
-        Debug.Log("Cam width:" + camWidth);
-
         transform.localScale = new Vector3(camWidth / backgroundWidth, camHeight/ backgroundHeight);
     }
 }
