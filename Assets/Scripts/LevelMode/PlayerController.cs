@@ -100,6 +100,11 @@ public class PlayerController : MonoBehaviour
     public void grapple()
     {
 
+        if(jointNode != null)
+        {
+            Destroy(jointNode);
+        }
+
         Vector2 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
 
 

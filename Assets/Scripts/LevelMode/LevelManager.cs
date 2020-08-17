@@ -58,11 +58,14 @@ public class LevelManager : MonoBehaviour
 
     public IEnumerator loadLevel(int buildIndexToLoad){
 
+        GameController.instance.loadingScreen.SetActive(true);
+
+
         GameController.instance.allLevelsPassedPanel.SetActive(false);
         GameController.instance.levelPassedPanel.SetActive(false);
         GameController.instance.levelFailedPanel.SetActive(false);
 
-        GameController.instance.loadingScreen.SetActive(true);
+        
 
         AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync(buildIndexToLoad);
         while (!asyncLoadLevel.isDone)
