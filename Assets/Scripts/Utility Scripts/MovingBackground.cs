@@ -25,10 +25,6 @@ public class MovingBackground : MonoBehaviour
     private void Awake()
     {
 
-
-
-        // initializeAttributes();
-        //setBackgroundSize();
         resizeToFitScreen();
         nextPlacePos = Vector3.zero + new Vector3(camWidth-transform.localScale.x ,0f,0f);
         originalPos = transform.position;
@@ -51,37 +47,14 @@ public class MovingBackground : MonoBehaviour
           
     }
 
-    public void setBackgroundSize()
-    {
-        transform.localScale = new Vector3(camWidth / backgroundWidth, camHeight / backgroundHeight, 0f);
-    }
-
-    public void initializeAttributes()
-    {
-
-        Debug.Log(cam.orthographicSize);
-
-        //sr = GetComponent<SpriteRenderer>();
-
-        camHeight = 2f * cam.orthographicSize;
-        Debug.Log(camHeight);
-
-        camWidth = camHeight * Camera.main.aspect;
-        Debug.Log(camWidth);
 
 
-        //backGroundWidth = sr.sprite.bounds.size.x;
-        //backGroundHeight = sr.sprite.bounds.size.y;
-
-    }
-
+ 
     public void resizeToFitScreen()
     {
 
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         if (sr == null) return;
-
-        transform.localScale = new Vector3(1, 1, 1);
 
         backgroundWidth = sr.sprite.bounds.size.x;
         backgroundHeight = sr.sprite.bounds.size.y;
@@ -92,6 +65,6 @@ public class MovingBackground : MonoBehaviour
             camWidth = camHeight / Screen.height * Screen.width;
         }
 
-        transform.localScale = new Vector3(camWidth / backgroundWidth, camHeight/ backgroundHeight);
+      //  transform.localScale = new Vector3(camWidth / backgroundWidth, camHeight/ backgroundHeight);
     }
 }

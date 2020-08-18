@@ -37,8 +37,7 @@ public class MovingLevelBackground : MonoBehaviour
 
     public void initializeAttributes()
     {
-        //camWidth = (GameController.instance.originalCamSize * 2f) / Screen.height * Screen.width;
-        //camWidth = (7f * 2f) / Screen.height * Screen.width;
+      
         originalPos = transform.position;
 
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
