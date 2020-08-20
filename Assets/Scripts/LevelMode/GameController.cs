@@ -40,7 +40,6 @@ public class GameController : MonoBehaviour
 
     public void startGame()
     {
-        Debug.Log("Start game called");
         prepareToStart();
 
        

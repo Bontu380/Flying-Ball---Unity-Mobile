@@ -192,7 +192,7 @@ public class PlayerController : MonoBehaviour
         float x = GameController.instance.originalCamSize + zoomOutWhileGrappling;
 
         //Debug.Log("Screen height/2 = "+y);
-        Debug.Log("Screen width/2 = " + x);
+
 
         hookRange = Mathf.Sqrt(Mathf.Pow(x,2) + Mathf.Pow(x,2));
     }

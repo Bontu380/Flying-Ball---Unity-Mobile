@@ -14,8 +14,10 @@ public class MovingLevelBackground : MonoBehaviour
     private static float camWidth;
     private static float backgroundWidth;
     private static float ratio;
+    private float ratio2;
+    private float temp;
 
-
+    
 
     private void Awake()
     { 
@@ -25,14 +27,17 @@ public class MovingLevelBackground : MonoBehaviour
 
     void Update()
     {
+     
+            transform.Translate(-Vector3.right * moveSpeed * Time.deltaTime);
+        
 
-        transform.Translate(-Vector3.right * moveSpeed * Time.deltaTime);
-
-        if (transform.position.x <= 2f * ratio  * ( -camWidth-backgroundWidth))
+        //if (transform.position.x <= 2f * ratio  * ( -camWidth-backgroundWidth))
+        if (transform.position.x <= -nextPlacePos.x)
         {
             transform.position = nextPlacePos;
+          
         }
-
+      
     }
 
     public void initializeAttributes()
@@ -49,14 +54,17 @@ public class MovingLevelBackground : MonoBehaviour
             backgroundWidth = sr.sprite.bounds.size.x;
             ratio = (camWidth + transform.localScale.x) / backgroundWidth;
         }
-        nextPlacePos = Vector3.zero + new Vector3(2f * ratio * (camWidth+backgroundWidth - transform.localScale.x), originalPos.y, 0f);
 
+        ratio2 = camWidth / (backgroundWidth - camWidth);
+        temp = -camWidth - -ratio + ((backgroundWidth - camWidth));
 
+        //nextPlacePos = Vector3.zero + new Vector3((camWidth+backgroundWidth - transform.localScale.x), originalPos.y, 0f);
+        nextPlacePos =  new Vector3(-ratio2 * (backgroundWidth +   transform.localScale.x * ratio + camWidth/-ratio2), originalPos.y, 0f);
 
-        
-        Debug.Log((camWidth + transform.localScale.x) / backgroundWidth);
-
+        //Debug.Log(backgroundWidth);
         Debug.Log(nextPlacePos);
+        //Debug.Log(ratio2);
+        //Debug.Log(temp);
     }
 
 

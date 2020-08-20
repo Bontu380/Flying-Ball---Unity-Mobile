@@ -33,7 +33,7 @@ public class LevelManager : MonoBehaviour
 
     public void loadNextLevelCall()
     {
-        //Burasi da düzenlenecek, menüye dön diye bir panel çıkarırız
+      
         int buildIndex = SceneManager.GetActiveScene().buildIndex;
 
         if (buildIndex < SceneManager.sceneCountInBuildSettings -1)
@@ -69,10 +69,9 @@ public class LevelManager : MonoBehaviour
         AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync(buildIndexToLoad);
         while (!asyncLoadLevel.isDone)
         {
-            Debug.Log("Loading");
             yield return null;
         }
-        Debug.Log("Level loaded");
+
 
        
         GameController.instance.loadingScreen.SetActive(false);
@@ -112,15 +111,11 @@ public class LevelManager : MonoBehaviour
     public void goToMenu()
     {
 
-       // Coroutine waitToLoad = StartCoroutine(loadLevel(0));
-       // GameController.instance.resetEverything(waitToLoad);
 
          StartCoroutine(loadLevel(0));
          
     }
 
-
-    //CALISMIYOR EXCEPTION FIRLATIYOR
 
     public int getLevelCount()
     {
@@ -143,7 +138,6 @@ public class LevelManager : MonoBehaviour
             count++;
           }
         }
-        Debug.Log(count);
         return count;
     }
 
