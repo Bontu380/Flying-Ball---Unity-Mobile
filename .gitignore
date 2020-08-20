@@ -10,10 +10,6 @@
 [Ll]ogs/
 [Mm]emoryCaptures/
 
-#Ignore all .meta file
-*.meta
-#But not source file with postfix. which is everything but a folder
-!*.*.meta
 
 # Never ignore Asset meta data
 !/[Aa]ssets/**/*.meta
