@@ -39,10 +39,10 @@ public class MovingBackgroundPlayer : MonoBehaviour
     {
         tempTime += Time.deltaTime;
 
-        if (tempTime >= 4f)
+        if (tempTime >= 2.5f)
         {
            
-            if (transform.position.y >= Camera.main.orthographicSize + 8f)
+            if (transform.position.y >= Camera.main.orthographicSize + 6f)
             {
                 Debug.Log("Outer if");
                 ps.Stop();

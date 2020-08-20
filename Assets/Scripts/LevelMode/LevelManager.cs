@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance;
-    public int totalLevelCount = 3;
+    public int totalLevelCount;
     private bool isMaxLevelReached;
 
     private void Awake()
@@ -24,11 +24,10 @@ public class LevelManager : MonoBehaviour
 
     }
 
-    //private void Start()
-   // {
-        //totalLevelCount = getLevelCount();
-              
-    //}
+    private void Start()
+    {
+        totalLevelCount = getLevelCount();    
+    }
 
 
 
@@ -133,14 +132,18 @@ public class LevelManager : MonoBehaviour
 
         for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
         {
-        
-          Scene sceneToCheck = SceneManager.GetSceneByBuildIndex(i);
-          if (sceneToCheck.name.Contains(keyword))
+
+            string path = SceneUtility.GetScenePathByBuildIndex(i);
+            string sceneName = path.Substring(0, path.Length - 6).Substring(path.LastIndexOf('/') + 1);
+
+     
+          if (sceneName.Contains(keyword))
           {
                
             count++;
           }
         }
+        Debug.Log(count);
         return count;
     }
 
