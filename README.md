@@ -1,1 +1,1 @@
-# My android game named as "Flying Ball".
+# My mobile game named as "Flying Ball".
