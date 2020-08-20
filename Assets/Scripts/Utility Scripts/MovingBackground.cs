@@ -72,11 +72,8 @@ public class MovingBackground : MonoBehaviour
         }
 
         ratio =  camWidth  / (backgroundWidth - camWidth);
-
-        Debug.Log(ratio);
-
         temp = -camWidth - -ratio  + ((backgroundWidth - camWidth));
-        Debug.Log( temp);
+
 
         //  transform.localScale = new Vector3(camWidth / backgroundWidth, camHeight/ backgroundHeight);
     }

@@ -9,6 +9,7 @@ public class MovingBackgroundPlayer : MonoBehaviour
     private Rigidbody2D playerRb;
     private ParticleSystem ps;
     private Vector3 anchorPoint;
+    private float tempTime = 0f;
 
     public bool goingRight = true;
     public float fixedVelocity = 5f;
@@ -36,33 +37,40 @@ public class MovingBackgroundPlayer : MonoBehaviour
 
     void Update()
     {
+        tempTime += Time.deltaTime;
 
-        if (transform.position.y >= Camera.main.orthographicSize + 8f)
+        if (tempTime >= 4f)
         {
-            ps.Stop();
-            if (goingRight && transform.position.x > anchorPoint.x)
+           
+            if (transform.position.y >= Camera.main.orthographicSize + 8f)
             {
-                //Debug.Log("If");
+                Debug.Log("Outer if");
+                ps.Stop();
+                if (goingRight && transform.position.x > anchorPoint.x)
+                {
+                    Debug.Log("If");
 
-                transform.rotation = Quaternion.AngleAxis(180f, transform.up) * transform.rotation;
-                goingRight = false;
-                playerRb.velocity = Vector2.zero;
+                    transform.rotation = Quaternion.AngleAxis(180f, transform.up) * transform.rotation;
+                    goingRight = false;
+                    playerRb.velocity = Vector2.zero;
+                }
+                else if (!goingRight && transform.position.x <= anchorPoint.x)
+                {
+                    Debug.Log("Else");
+
+                    transform.rotation = Quaternion.AngleAxis(-180f, transform.up) * transform.rotation;
+                    goingRight = true;
+
+                }
+                randomizeJointPointsAndDistance();
+                playerRb.velocity = transform.right * fixedVelocity;
+
+                tempTime = 0f;
+
+                ps.Play();
+                return;
             }
-            else if (!goingRight && transform.position.x <= anchorPoint.x)
-            {
-                //Debug.Log("Else");
-
-                transform.rotation = Quaternion.AngleAxis(-180f, transform.up) * transform.rotation;
-                goingRight = true;
-
-            }
-            randomizeJointPointsAndDistance();
-            playerRb.velocity = transform.right * fixedVelocity;
-
-            ps.Play();
-            return;
         }
-       
         faceVelocityDirection();
 
     }
