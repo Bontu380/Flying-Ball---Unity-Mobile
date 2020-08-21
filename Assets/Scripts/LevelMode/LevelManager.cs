@@ -57,6 +57,7 @@ public class LevelManager : MonoBehaviour
 
     public IEnumerator loadLevel(int buildIndexToLoad){
 
+        GameController.instance.audioSource.Stop();
         GameController.instance.loadingScreen.SetActive(true);
 
 

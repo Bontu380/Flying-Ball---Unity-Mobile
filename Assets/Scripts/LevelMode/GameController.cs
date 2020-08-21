@@ -19,6 +19,7 @@ public class GameController : MonoBehaviour
     public float originalCamSize;
     public float zoomOutSize;
     public float zoomTime = 3.5f;
+    public AudioSource audioSource;
 
     void Awake()
     {
@@ -42,7 +43,7 @@ public class GameController : MonoBehaviour
     {
         prepareToStart();
 
-       
+        audioSource.Play();
 
         Time.timeScale = 1f;
         CameraController.instance.startZoomOutInSequence(originalCamSize,zoomOutSize,zoomTime);
