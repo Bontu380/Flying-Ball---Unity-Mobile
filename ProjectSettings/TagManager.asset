@@ -9,6 +9,7 @@ TagManager:
   - EventSystem
   - Canvas
   - Manager
+  - Ground
   layers:
   - Default
   - TransparentFX
