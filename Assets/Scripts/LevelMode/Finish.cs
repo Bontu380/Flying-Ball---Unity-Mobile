@@ -8,7 +8,6 @@ public class Finish : MonoBehaviour
     {
         if (collision.transform.CompareTag("Player"))
         {
-            Debug.Log("Collided with player");
             PlayerController.instance.releaseGrapple();
             GameController.instance.levelPassed();
         }

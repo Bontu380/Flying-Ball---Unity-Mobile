@@ -200,7 +200,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.CompareTag("Obstacle") || collision.transform.CompareTag("Wall"))
+        if (collision.transform.CompareTag("Obstacle") || collision.transform.CompareTag("Wall") || collision.transform.CompareTag("Ground"))
         {
             GameController.instance.die();
         }
