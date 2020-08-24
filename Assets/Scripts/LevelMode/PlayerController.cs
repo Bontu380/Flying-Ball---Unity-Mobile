@@ -16,18 +16,19 @@ public class PlayerController : MonoBehaviour
     private float velocityMultiplier = 10f;
    // private float forceMultiplier;
     private float smoothFactor = 6f;
-    [SerializeField] private float hookRange;
+    private float hookRange;
     private Touch touch;
-
+    private float angle;
     public float zoomOutWhileGrappling = 8f;
     public float zoomTime = 3f;
     Coroutine zoomOut;
     Coroutine zoomIn;
 
- 
-    [SerializeField] private Vector2 currentSpeed;
-    [SerializeField] private float currentSpeedMagnitude;
-    [SerializeField] private float angle;
+
+
+    private Vector2 currentSpeed;
+    public float currentSpeedMagnitude;
+  
 
     private void Awake()
     {
@@ -79,6 +80,8 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        currentSpeedMagnitude = playerRb.velocity.magnitude;
+
         
     }
 
@@ -121,12 +124,12 @@ public class PlayerController : MonoBehaviour
 
         if (hit.collider != null)
         {
-            playerRb.gravityScale = 1;
+            playerRb.gravityScale = 0.5f;
             //grapplePoint = hit.point;
             grapplePoint = hit.transform.position;
             float distance = Vector3.Distance(grapplePoint,transform.position);
             createJoint(distance);
-            playerRb.gravityScale = 1;
+            playerRb.gravityScale = 0.5f;
      
             isGrappling = true;
 
