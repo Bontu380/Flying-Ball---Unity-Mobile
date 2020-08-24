@@ -65,6 +65,7 @@ public class LevelManager : MonoBehaviour
         GameController.instance.levelPassedPanel.SetActive(false);
         GameController.instance.levelFailedPanel.SetActive(false);
 
+        /*
         if(buildIndexToLoad == 0)
         {
             GameController.instance.deactivateEverything();
@@ -86,21 +87,15 @@ public class LevelManager : MonoBehaviour
             GameController.instance.loadingScreen.SetActive(false);
             GameController.instance.startGame();
         }
+        */
 
 
-
-
-
-
-
-        /*AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync(buildIndexToLoad);
+        AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync(buildIndexToLoad);
         while (!asyncLoadLevel.isDone)
         {
             yield return null;
         }
 
-
-       
         GameController.instance.loadingScreen.SetActive(false);
         
         if (buildIndexToLoad != 0)
@@ -109,11 +104,11 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
-           
+
             GameController.instance.deactivateEverything();
+            //Camera.main.orthographicSize = GameController.instance.originalCamSize;
             GameController.instance.resumeGame();
         }
-        */
        
     }
 

@@ -44,11 +44,11 @@ public class MovingBackgroundPlayer : MonoBehaviour
            
             if (transform.position.y >= Camera.main.orthographicSize + 6f)
             {
-                Debug.Log("Outer if");
+                
                 ps.Stop();
                 if (goingRight && transform.position.x > anchorPoint.x)
                 {
-                    Debug.Log("If");
+
 
                     transform.rotation = Quaternion.AngleAxis(180f, transform.up) * transform.rotation;
                     goingRight = false;
@@ -56,7 +56,7 @@ public class MovingBackgroundPlayer : MonoBehaviour
                 }
                 else if (!goingRight && transform.position.x <= anchorPoint.x)
                 {
-                    Debug.Log("Else");
+                
 
                     transform.rotation = Quaternion.AngleAxis(-180f, transform.up) * transform.rotation;
                     goingRight = true;

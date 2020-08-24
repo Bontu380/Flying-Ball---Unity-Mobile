@@ -13,13 +13,14 @@ public class PlayerController : MonoBehaviour
     private Vector2 grapplePoint;
     public bool isGrappling = false;
     private SpringJoint2D jointNode;
-    private float velocityMultiplier = 10f;
+    public float velocityMultiplier = 10f;
     private float smoothFactor = 6f;
     private float hookRange;
     private Touch touch;
     private float angle;
     public float zoomOutWhileGrappling = 8f;
     public float zoomTime = 3f;
+    public float manipulatedGravity = 0.7f;
     private Coroutine zoomOut;
     private Coroutine zoomIn;
     private GrappableObject grappledObject;
@@ -116,8 +117,6 @@ public class PlayerController : MonoBehaviour
         lineRenderer.positionCount = 2;
 
         RaycastHit2D hit;
-        //hit = Physics2D.Raycast(playerPosition, touchPosition - playerPosition, 30f, LayerMask.GetMask("Obstacle"));
-
         hit = Physics2D.CircleCast(playerPosition, 1.5f ,touchPosition - playerPosition, hookRange, LayerMask.GetMask("Obstacle"));
        
 
@@ -125,12 +124,12 @@ public class PlayerController : MonoBehaviour
 
         if (hit.collider != null)
         {
-            playerRb.gravityScale = 0.5f;
+            playerRb.gravityScale = manipulatedGravity;
             //grapplePoint = hit.point;
             grapplePoint = hit.transform.position;
             float distance = Vector3.Distance(grapplePoint,transform.position);
             createJoint(distance);
-            playerRb.gravityScale = 0.5f;
+            playerRb.gravityScale = manipulatedGravity;
      
             isGrappling = true;
 
@@ -203,14 +202,8 @@ public class PlayerController : MonoBehaviour
 
     public void calculateHookRange()
     {
-        //float y = Screen.height / 2;
-        //float x = Screen.width / 2;
-
+        
         float x = GameController.instance.originalCamSize + zoomOutWhileGrappling;
-
-        //Debug.Log("Screen height/2 = "+y);
-
-
         hookRange = Mathf.Sqrt(Mathf.Pow(x,2) + Mathf.Pow(x,2));
     }
 

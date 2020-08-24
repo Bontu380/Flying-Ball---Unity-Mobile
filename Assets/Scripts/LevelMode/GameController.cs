@@ -119,14 +119,16 @@ public class GameController : MonoBehaviour
     {
 
         DontDestroy scriptOnObject = GameObject.FindObjectOfType<DontDestroy>();
-        //ENDLESSINKI MI LEVELLERINKI MI DIYE BIR IF CHECK KOYABILIRSIN
+        //Destroy(scriptOnObject.gameObject);
+      
         GameObject objectItself = scriptOnObject.gameObject;
 
         for (int i = 0; i < objectItself.transform.childCount; i++)
         {
-            if (objectItself.transform.GetChild(i).transform.name != "ManagersForLevels")
+            Transform child = objectItself.transform.GetChild(i);
+            if (child.transform.name != "ManagersForLevels" )
             {
-                objectItself.transform.GetChild(i).gameObject.SetActive(false);
+                child.gameObject.SetActive(false);
             }
         }
     }

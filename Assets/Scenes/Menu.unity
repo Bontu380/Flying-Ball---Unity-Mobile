@@ -97,7 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 19edb00b560aa7e44834cb15bfdd0a2f,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -138,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &23894440
 Transform:
   m_ObjectHideFlags: 0
@@ -599,7 +600,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!199 &257318600
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -5335,8 +5336,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGrappling: 0
+  velocityMultiplier: 10
   zoomOutWhileGrappling: 8
   zoomTime: 3
+  manipulatedGravity: 0.7
   currentSpeedMagnitude: 0
 --- !u!58 &257318603
 CircleCollider2D:
@@ -6025,7 +6028,7 @@ GameObject:
   m_Component:
   - component: {fileID: 393334794}
   - component: {fileID: 393334793}
-  - component: {fileID: 393334792}
+  - component: {fileID: 393334791}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -6033,7 +6036,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &393334792
+--- !u!81 &393334791
 AudioListener:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6994,7 +6997,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &934404895
 Transform:
   m_ObjectHideFlags: 0
@@ -13791,7 +13794,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2135539844
 RectTransform:
   m_ObjectHideFlags: 0

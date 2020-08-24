@@ -15,6 +15,7 @@ public class DontDestroy : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        deactivateChildren();
     }
     void Start()
     {
@@ -26,6 +27,19 @@ public class DontDestroy : MonoBehaviour
         }
         //LevelManager.instance.additiveObjects.Add(this.gameObject);
         DontDestroyOnLoad(this.gameObject);
+
+        deactivateChildren();
+    }
+
+    public void deactivateChildren()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (transform.GetChild(i).tag != "Manager")
+            {
+                transform.GetChild(i).gameObject.SetActive(false);
+            }
+        }
     }
 
 }
