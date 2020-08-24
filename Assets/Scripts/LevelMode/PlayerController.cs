@@ -14,15 +14,16 @@ public class PlayerController : MonoBehaviour
     public bool isGrappling = false;
     private SpringJoint2D jointNode;
     private float velocityMultiplier = 10f;
-   // private float forceMultiplier;
     private float smoothFactor = 6f;
     private float hookRange;
     private Touch touch;
     private float angle;
     public float zoomOutWhileGrappling = 8f;
     public float zoomTime = 3f;
-    Coroutine zoomOut;
-    Coroutine zoomIn;
+    private Coroutine zoomOut;
+    private Coroutine zoomIn;
+    private GrappableObject grappledObject;
+
 
 
 
@@ -133,6 +134,12 @@ public class PlayerController : MonoBehaviour
      
             isGrappling = true;
 
+            if (grappledObject == null)
+            {
+                grappledObject = hit.transform.GetComponent<GrappableObject>();
+                grappledObject.beingGrappled = true;
+            }
+
             if(zoomIn != null)
             {
                 StopCoroutine(zoomIn);
@@ -153,6 +160,13 @@ public class PlayerController : MonoBehaviour
         lineRenderer.positionCount = 0;
         Destroy(jointNode);
         isGrappling = false;
+
+        if (grappledObject != null)
+        {
+            grappledObject.beingGrappled = false;
+            grappledObject = null;
+        }
+
 
         if(zoomOut != null)
         {
