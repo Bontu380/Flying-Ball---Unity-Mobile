@@ -73,8 +73,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-
-        else if (Input.touchCount == 0)
+        else if (Input.touchCount == 0 && isGrappling)
         {
             if (touch.phase == TouchPhase.Ended)
             {
@@ -141,7 +140,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-            if (zoomOut == null)
+            if (zoomOut == null )
             {
                startZoom("out");
             }
@@ -152,6 +151,8 @@ public class PlayerController : MonoBehaviour
 
     public void releaseGrapple()
     {
+
+        Debug.Log("Release grapple");
         lineRenderer.positionCount = 0;
         Destroy(jointNode);
         isGrappling = false;
@@ -162,8 +163,9 @@ public class PlayerController : MonoBehaviour
             grappledObject = null;
         }
 
-        if (zoomIn == null)
+        if (zoomIn == null && zoomOut != null)
         {
+            Debug.Log("Calling zoom in from release grapple ");
             startZoom("in");
         }
             
@@ -216,8 +218,6 @@ public class PlayerController : MonoBehaviour
             {
                 stopZoom("in");
             }
-            Debug.Log("zooming out");
-
             zoomOut = StartCoroutine(CameraController.instance.zoomOut(GameController.instance.originalCamSize + zoomOutWhileGrappling, zoomTime));
             zoomIn = null;
         }
@@ -228,8 +228,6 @@ public class PlayerController : MonoBehaviour
             {
                 stopZoom("out");
             }
-            Debug.Log("zooming in");
-
             zoomIn = StartCoroutine(CameraController.instance.zoomIn(null, GameController.instance.originalCamSize, zoomTime));
             zoomOut = null;
         }

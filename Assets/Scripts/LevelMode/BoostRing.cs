@@ -17,6 +17,7 @@ public class BoostRing : MonoBehaviour
 
             playerRb.AddForce(boostVector,ForceMode2D.Impulse);
 
+            Debug.Log("Calling zoom out from ring");
             PlayerController.instance.startZoom("out");
         }
     }
