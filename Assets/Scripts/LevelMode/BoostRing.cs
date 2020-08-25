@@ -16,6 +16,8 @@ public class BoostRing : MonoBehaviour
             Vector3 boostVector = playerRb.velocity.normalized * boostForce;
 
             playerRb.AddForce(boostVector,ForceMode2D.Impulse);
+
+           // PlayerController.instance.startZoom("out");
         }
     }
 
