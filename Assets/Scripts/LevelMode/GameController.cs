@@ -126,7 +126,7 @@ public class GameController : MonoBehaviour
         for (int i = 0; i < objectItself.transform.childCount; i++)
         {
             Transform child = objectItself.transform.GetChild(i);
-            if (child.transform.name != "ManagersForLevels" )
+            if (!child.transform.CompareTag("Manager") )
             {
                 child.gameObject.SetActive(false);
             }

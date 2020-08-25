@@ -106,7 +106,6 @@ public class LevelManager : MonoBehaviour
         {
 
             GameController.instance.deactivateEverything();
-            //Camera.main.orthographicSize = GameController.instance.originalCamSize;
             GameController.instance.resumeGame();
         }
        
@@ -132,10 +131,7 @@ public class LevelManager : MonoBehaviour
 
     public void goToMenu()
     {
-
-
-         StartCoroutine(loadLevel(0));
-         
+        StartCoroutine(loadLevel(0));
     }
 
 
