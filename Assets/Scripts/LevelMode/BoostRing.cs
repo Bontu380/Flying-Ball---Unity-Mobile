@@ -17,7 +17,7 @@ public class BoostRing : MonoBehaviour
 
             playerRb.AddForce(boostVector,ForceMode2D.Impulse);
 
-           // PlayerController.instance.startZoom("out");
+            PlayerController.instance.startZoom("out");
         }
     }
 

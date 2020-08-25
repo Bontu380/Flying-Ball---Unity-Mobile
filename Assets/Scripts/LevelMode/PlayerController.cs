@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour
         if (hit.collider != null)
         {
             playerRb.gravityScale = manipulatedGravity;
-            //grapplePoint = hit.point;
+       
             grapplePoint = hit.transform.position;
             float distance = Vector3.Distance(grapplePoint,transform.position);
             createJoint(distance);
@@ -139,17 +139,11 @@ public class PlayerController : MonoBehaviour
                 grappledObject.beingGrappled = true;
             }
 
-            if(zoomIn != null)
-            {
-                stopZoom(zoomIn);
-                //StopCoroutine(zoomIn);
-            }
+
 
             if (zoomOut == null)
             {
                startZoom("out");
-              // zoomOut = StartCoroutine(CameraController.instance.zoomOut(GameController.instance.originalCamSize + zoomOutWhileGrappling,zoomTime));
-              //  zoomIn = null;
             }
         }
         
@@ -168,18 +162,9 @@ public class PlayerController : MonoBehaviour
             grappledObject = null;
         }
 
-        
-        if(zoomOut != null)
-        {
-            stopZoom(zoomOut);
-            //StopCoroutine(zoomOut);
-        }
-        
         if (zoomIn == null)
         {
             startZoom("in");
-            //zoomIn = StartCoroutine(CameraController.instance.zoomIn(zoomOut, GameController.instance.originalCamSize, zoomTime));
-            //zoomOut = null;
         }
             
 
@@ -223,21 +208,46 @@ public class PlayerController : MonoBehaviour
     public void startZoom(string direction)
     {
 
-        Debug.Log("in start zoom");
+        
         if (direction == "out")
         {
+         
+            if (zoomIn != null)
+            {
+                stopZoom("in");
+            }
+            Debug.Log("zooming out");
+
             zoomOut = StartCoroutine(CameraController.instance.zoomOut(GameController.instance.originalCamSize + zoomOutWhileGrappling, zoomTime));
             zoomIn = null;
         }
         else if (direction == "in")
         {
-            zoomIn = StartCoroutine(CameraController.instance.zoomIn(zoomOut, GameController.instance.originalCamSize, zoomTime));
+            
+            if (zoomOut != null)
+            {
+                stopZoom("out");
+            }
+            Debug.Log("zooming in");
+
+            zoomIn = StartCoroutine(CameraController.instance.zoomIn(null, GameController.instance.originalCamSize, zoomTime));
             zoomOut = null;
         }
     }
-    public void stopZoom(Coroutine zoomPhase)
+
+
+    public void stopZoom(string eventToBeStopped)
     {
-        StopCoroutine(zoomPhase);
+        if(eventToBeStopped == "out")
+        {
+            StopCoroutine(zoomOut);
+        }
+        else if(eventToBeStopped == "in")
+        {
+            StopCoroutine(zoomIn);
+        }
+   
     }
+ 
 
 }
