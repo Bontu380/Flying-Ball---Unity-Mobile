@@ -594,6 +594,7 @@ GameObject:
   - component: {fileID: 257318602}
   - component: {fileID: 257318601}
   - component: {fileID: 257318600}
+  - component: {fileID: 257318599}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -601,6 +602,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!114 &257318599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 257318598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9249b7d4a83a16a4186a3c300893738f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!199 &257318600
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -674,7 +687,7 @@ ParticleSystem:
   m_GameObject: {fileID: 257318598}
   serializedVersion: 6
   lengthInSec: 5
-  simulationSpeed: 1
+  simulationSpeed: 4
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0

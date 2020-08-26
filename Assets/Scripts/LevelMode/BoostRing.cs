@@ -6,6 +6,7 @@ public class BoostRing : MonoBehaviour
 {
 
     public float boostForce = 40f;
+    public float burstTime = 1.5f;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -17,7 +18,6 @@ public class BoostRing : MonoBehaviour
 
             playerRb.AddForce(boostVector,ForceMode2D.Impulse);
 
-            Debug.Log("Calling zoom out from ring");
             PlayerController.instance.startZoom("out");
         }
     }

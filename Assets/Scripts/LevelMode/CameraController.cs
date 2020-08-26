@@ -44,7 +44,7 @@ public class CameraController : MonoBehaviour
         while (cam.orthographicSize < targetZoomOutSize - 0.1f)
         {
             cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetZoomOutSize, time * Time.deltaTime);
-            //cam.orthographicSize = Mathf.MoveTowards(cam.orthographicSize, zoomOutSize, denemeMoveTowards * Time.deltaTime);
+  
             yield return null;
         }
         yield return new WaitForSeconds(1.5f);
@@ -57,7 +57,7 @@ public class CameraController : MonoBehaviour
 
         while (cam.orthographicSize > targetZoomInSize + 0.1f)
         {
-
+         
             cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, originalSize, time * Time.deltaTime);
             yield return null;
         }
