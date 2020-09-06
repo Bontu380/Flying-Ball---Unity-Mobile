@@ -41,11 +41,6 @@ public class ParticleManager : MonoBehaviour
         emission.rateOverTime = playerRb.velocity.magnitude + 1f;
     }
 
-   /* public void applyBurst(float particleCount,float time)
-    {
-  
-        ps.emission.SetBurst(0, new ParticleSystem.Burst(time, particleCount));
-    }*/
 }
 
 

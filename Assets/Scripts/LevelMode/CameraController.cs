@@ -102,7 +102,7 @@ public class CameraController : MonoBehaviour
             }
 
 
-            yield return new WaitForSeconds(0.4f); //1 saniyeye tamamlamak için
+            yield return new WaitForSeconds(0.4f); 
             seconds--;
             smoothingTime = 0f;
 

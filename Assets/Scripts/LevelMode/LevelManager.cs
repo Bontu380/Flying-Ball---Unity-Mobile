@@ -20,8 +20,6 @@ public class LevelManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-       // setPassedMaxLevel(0);
-
     }
 
     private void Start()
@@ -124,7 +122,7 @@ public class LevelManager : MonoBehaviour
 
         if (currentLevel > maxPassedLevel)
         {
-            setPassedMaxLevel(currentLevel); //Index = 0 zaten menu ekrani
+            setPassedMaxLevel(currentLevel); 
 
         }
     }

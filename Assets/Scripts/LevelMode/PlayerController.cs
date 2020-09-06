@@ -152,7 +152,7 @@ public class PlayerController : MonoBehaviour
     public void releaseGrapple()
     {
 
-        Debug.Log("Release grapple");
+        
         lineRenderer.positionCount = 0;
         Destroy(jointNode);
         isGrappling = false;
@@ -165,7 +165,7 @@ public class PlayerController : MonoBehaviour
 
         if (zoomIn == null && zoomOut != null)
         {
-            Debug.Log("Calling zoom in from release grapple ");
+            
             startZoom("in");
         }
             

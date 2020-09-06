@@ -94,7 +94,7 @@ public class GameController : MonoBehaviour
     public void prepareToStart()
     {
         pause = true;
-        //Time.timeScale = 0f;
+       
 
         levelFailedPanel.SetActive(false);
         levelPassedPanel.SetActive(false);
@@ -119,7 +119,7 @@ public class GameController : MonoBehaviour
     {
 
         DontDestroy scriptOnObject = GameObject.FindObjectOfType<DontDestroy>();
-        //Destroy(scriptOnObject.gameObject);
+     
       
         GameObject objectItself = scriptOnObject.gameObject;
 

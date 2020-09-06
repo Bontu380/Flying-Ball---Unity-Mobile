@@ -22,8 +22,6 @@ public class MovingObject : MonoBehaviour
         pos1 = transform.position + new Vector3(-xOffset,-yOffset,0f);
         pos2 = transform.position + new Vector3(xOffset, yOffset, 0f);
 
-        Debug.DrawRay(transform.position, pos1, Color.green);
-        Debug.DrawRay(transform.position, pos2, Color.green);
     }
    
     void Update()
@@ -41,7 +39,7 @@ public class MovingObject : MonoBehaviour
                 movingToPos1 = false;
             }
         }
-        else if(!movingToPos1) //O zaman pos2 ye gidiyordur.
+        else if(!movingToPos1) 
         {
           
 

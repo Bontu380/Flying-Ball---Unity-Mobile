@@ -17,14 +17,9 @@ public class SpeedUpBlock : MonoBehaviour
         playerOriginalVelocity = PlayerController.instance.velocityMultiplier;
     }
 
-    // Update is called once per frame
     void Update()
     {
-       /* if (speedingUpPlayer)
-        {
-            return;
-        }
-        */
+       
         
         if (script.beingGrappled && !speedingUpPlayer)
         {
@@ -43,7 +38,7 @@ public class SpeedUpBlock : MonoBehaviour
 
     public IEnumerator speedUpPlayer()
     {
-        Debug.Log("Korutin");
+       
         speedingUpPlayer = true;
         while(PlayerController.instance.velocityMultiplier < maxSpeedLimit)
         {

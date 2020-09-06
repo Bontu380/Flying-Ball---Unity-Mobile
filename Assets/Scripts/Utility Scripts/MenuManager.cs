@@ -13,7 +13,7 @@ public class MenuManager : MonoBehaviour
     public GameObject levelSelectPanel;
 
     private GameObject dontDestroyObjectsForLevels;
-    //public GameObject dontDestroyObjectsForEndless;
+
 
     public Button buttonPrefab;
 
@@ -26,7 +26,7 @@ public class MenuManager : MonoBehaviour
            
     }
 
-    public void startLevel()    //BURALAR TAMAMEN GEÇİCİ OYUN BİTİNCE DÖNÜLECEK
+    public void startLevel()    
     {
         int buildIndex = SceneManager.GetActiveScene().buildIndex;
         StartCoroutine(loadLevel(buildIndex + 1));
@@ -37,7 +37,7 @@ public class MenuManager : MonoBehaviour
         AsyncOperation loadAsyncLevel = SceneManager.LoadSceneAsync(index);
         while(!loadAsyncLevel.isDone)
         {
-            Debug.Log("Loading");
+           
             yield return null;
         }
     }
@@ -66,9 +66,7 @@ public class MenuManager : MonoBehaviour
         float yPos = levelSelectPanel.transform.position.y + 100f ;
         float xPos = Screen.width / 2;
 
-        //kaç level button olacağını kullanıcının önceden geçtiği levellere göre databaseden çekmek mantıklı
-
-        //levelButtons = new Button[SceneManager.sceneCountInBuildSettings-1]; 
+     
 
         int levelsAvaliableForPlay = LevelManager.instance.getPassedMaxLevel();
 
@@ -100,7 +98,7 @@ public class MenuManager : MonoBehaviour
 
             if(i < levelButtons.Length-1 || i == LevelManager.instance.totalLevelCount)
             {
-                levelButtons[i].transform.GetChild(1).gameObject.SetActive(true); //0 is text 1 is check image 
+                levelButtons[i].transform.GetChild(1).gameObject.SetActive(true); 
             }
 
             

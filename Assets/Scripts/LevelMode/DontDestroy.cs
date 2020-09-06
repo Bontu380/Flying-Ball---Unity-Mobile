@@ -15,7 +15,7 @@ public class DontDestroy : MonoBehaviour
         {
             Destroy(gameObject);
         }
-       // deactivateChildren();
+   
     }
     void Start()
     {
@@ -25,21 +25,9 @@ public class DontDestroy : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-        //LevelManager.instance.additiveObjects.Add(this.gameObject);
+    
         DontDestroyOnLoad(this.gameObject);
 
     }
 
-    /*
-    public void deactivateChildren()
-    {
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            if (transform.GetChild(i).tag != "Manager" || transform.GetChild(i).tag != "MainCamera")
-            {
-                transform.GetChild(i).gameObject.SetActive(false);
-            }
-        }
-    }
-    */
 }
